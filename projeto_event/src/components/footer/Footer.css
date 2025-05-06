@@ -1,0 +1,10 @@
+footer{
+    display: flex;
+    justify-content: center;
+    height: 35px;
+}
+
+footer p{
+    text-align: center;
+}   
+

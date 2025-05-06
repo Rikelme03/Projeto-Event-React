@@ -1,0 +1,85 @@
+.main_login {
+    display: flex;
+    justify-content: center;
+    background-color: #B51D44;
+    height: 100vh;
+}
+
+.logoBanner {
+    flex: 1;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logoBanner img{
+    width: 340px;
+    height:245px;
+}
+
+.section_login {
+    display: flex;
+    flex: 1;
+    background-color: #FFFFFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.form_login {
+    color: white;
+    /* vai deixar o titulo com letra maiuscula */
+    width: 100;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.campos_login {
+    width: 100%;
+}
+
+.campo_input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+}
+
+.campo_input input {
+  width: 100%;
+  padding: 10px 5px;
+  border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+  font-size: 16px;
+}   
+
+.form_login a{
+    text-decoration: none;
+    color: #a6a0a0;
+}
+
+@media screen and (max-width:768px){
+    .logoBanner{
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+header{
+    background-color: white;
+
+    height: 75px;
+
+    box-shadow: 1px 4px 4px 0px #0000008f;
+    position: relative;
+}
+
+.cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cabecalho img{
+    height: 25px;
+}
+
+.link_header{
+    margin-left: 45px;
+
+    color: black;
+
+    text-decoration: none;
+}
+
+.Adm img{
+    width: 15px;
+    height: 13px;
+    margin-left: 10px;
+}
