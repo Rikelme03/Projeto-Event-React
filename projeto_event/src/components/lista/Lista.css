@@ -1,0 +1,62 @@
+
+.listagem {
+    background-color: #B51D44;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  .titulo_organizando hr{
+    width: 300px;
+  }
+
+  .titulo_organizando {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .titulo_organizando h1 {
+    color: aliceblue;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .linha_titulo {
+    width: 200px;
+    border: none;
+    border-top: 2px solid aliceblue;
+    margin: 0 auto;
+  }
+  
+
+  .tabela {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: aliceblue;
+  }
+  
+  .tabela table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table_cabecalho th {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .item_lista {
+    text-align: center;
+    border-bottom: 1px solid white;
+  }
+  
+  .item_lista td {
+    padding: 20px;
+  }
+  
+  .item_lista img {
+    height: 20px;
+    
+  }
+      

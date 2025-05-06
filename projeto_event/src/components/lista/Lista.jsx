@@ -1,33 +1,40 @@
-import "./Lista.css"
+import "./Lista.css";
+import Editar from "../../assets/Editar.png";
+import Excluir from "../../assets/Excluir.png";
 
-const Lista = (props) => {
-    return(
-        <section className="layout_grid titlo_org">
-             <h1>{props.listaCadastro}</h1>
-             <hr/>
-             <div className="tabela">
+const Lista = () => {
+    return (
+        <section className="layout_grid listagem">
+            <div className="titulo_organizando">
+                <h1>LISTA TIPO DE EVENTOS</h1>
+                <hr className="linha_titulo" />
+            </div>
+
+            <div className="tabela">
                 <table>
                     <thead>
                         <tr className="table_cabecalho">
-                            <th >Nome</th>
-                            <th style = {{display:props.visibilidadeGenero}}>Gênero</th>
+                            <th>Título</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <tr className="item_lista">
-                            <td data-cell ="Nome">Velozes e Furiosos</td>
-                            <td data-cell ="Gênero" style = {{display:props.visibilidadeGenero}}>Ação</td>
-                            {/* <td data-cell ="Editar"><img src={Editar} alt="Imagem de uma caneta" /></td>
-                            <td data-cell ="Excluir"><img src={Excluir} alt="Lixeira" /></td> */}
+                            <td data-cell="Nome">Tipo Evento</td>
+                            <td data-cell="Editar">
+                                <img src={Editar} alt="Ícone editar" />
+                            </td>
+                            <td data-cell="Excluir">
+                                <img src={Excluir} alt="Ícone excluir" />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
         </section>
-    )
-}
+    );
+};
 
 export default Lista;

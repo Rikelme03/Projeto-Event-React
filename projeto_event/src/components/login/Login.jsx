@@ -1,7 +1,7 @@
 import "./Login.css";
 import LogoEvent from "../../assets/logoEvent.svg"
 import Logo from "../../assets/logo.png"
-import Botao from "../../components/botao/Botao";
+import Botao from "../botao/Botao";
 
 const Login = () =>{
     return (
@@ -12,7 +12,7 @@ const Login = () =>{
             </div>
             <section className="section_login">
 
-                <form action="" className="form_login">
+                <form action="" className="form_cadastro">
                 <img src= {LogoEvent} alt="Logo do event+" />
                 
                 <div className="campos_login">
