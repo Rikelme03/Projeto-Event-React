@@ -42,11 +42,13 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    
 
 }
 
 .campos_login {
     width: 100%;
+    margin-top: 50px;
 }
 
 .campo_input {
@@ -65,14 +67,16 @@
   font-size: 16px;
 }   
 
-.form_login a{
+.section_login a{
+    color: #A6A0A0;
     text-decoration: none;
-    color: #a6a0a0;
+    padding: 20px 20px;
 }
 
 @media screen and (max-width:768px){
     .logoBanner{
         display: none;
+
     }
 }
 

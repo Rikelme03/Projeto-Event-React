@@ -1,10 +1,11 @@
 import './App.css';
-import TipoEvento from "./pages/tipoEvento/TipoEvento";
+import CadatroEvento from "./pages/cadastroEvento/CadastrEvento"
+import Rotas from './routes/routes';
 
 function App() {
   return (
     <>
-    <TipoEvento/>
+    <Rotas/>
     </>
   );
 }

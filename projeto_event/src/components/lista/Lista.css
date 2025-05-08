@@ -2,12 +2,13 @@
 .listagem {
     background-color: #B51D44;
     width: 100%;
-    min-height: 100vh;
-    padding: 2rem;
+    height: 370px;
+    padding: 20px;
   }
   
   .titulo_organizando hr{
     width: 300px;
+
   }
 
   .titulo_organizando {
@@ -34,6 +35,7 @@
     max-width: 1000px;
     margin: 0 auto;
     color: aliceblue;
+    
   }
   
   .tabela table {
@@ -44,6 +46,7 @@
   .table_cabecalho th {
     padding: 10px;
     text-align: center;
+    border-bottom: 1px solid white;
   }
   
   .item_lista {
@@ -59,4 +62,25 @@
     height: 20px;
     
   }
-      
+
+.tabela .table_cabecalho :first-child{
+  width: 300px;
+  
+}
+
+  .tabela .table_cabecalho :nth-child(2){
+    width: 400px;
+    text-align: start;
+}
+
+.tabela .item_lista :nth-child(2){
+  width: 400px;
+}
+
+
+
+
+
+
+
+

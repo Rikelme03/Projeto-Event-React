@@ -1,7 +1,7 @@
 import "./Login.css";
 import LogoEvent from "../../assets/logoEvent.svg"
 import Logo from "../../assets/logo.png"
-import Botao from "../botao/Botao";
+import Botao from "../../components/botao/Botao";
 
 const Login = () =>{
     return (
@@ -25,8 +25,8 @@ const Login = () =>{
                     <input type="nome" name="nome" placeholder="Password" />
                 </div>
                 </div>
-                <a href="">Esqueceu a senha</a>
-                <Botao nomeDoBotao = "Cadastrar"/>
+                <a href="">Esqueceu a senha?</a>
+                <Botao nomeDoBotao = "Login"/>
                 </form>
                 
 

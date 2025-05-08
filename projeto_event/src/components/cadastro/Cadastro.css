@@ -1,3 +1,11 @@
+.layout_grid {
+    width: 100%;
+    height: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+
 .titulo{
     display: flex;
     justify-content: center;
@@ -30,7 +38,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-
     height: 450px;
 
 }
@@ -55,22 +62,34 @@
 .form_cadastro{
     width: 100;
     height: 50%;
-    
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 200px;
-
     margin-bottom: 200px;
 }
 
-.campo_cad_titulo input{
+.campo_cad_titulo input,
+.campo_cad_tipoevento select{
+    border: none;
     margin-bottom: 85px;
     padding: 5px 5px;
-    border: none;
     border-bottom: 1px solid black;
     outline: none;
     font-size: 15px;
     width: 356px;
+    border-radius: 1px;
+    
 }
+
+.campo_cad_titulo,
+.campo_cad_tipoEvento{
+    display: flex;
+    flex-direction: column;
+}
+
+.campo_cad_tipoevento{
+    margin-left: -54px;
+}
+
 
