@@ -4,7 +4,8 @@ import Lista from "../../components/lista/Lista"
 import Footer from "../../components/footer/Footer"
 import Banner from "../../assets/bannerCadastro.png"
 const TipoEvento = () => {
-    return( 
+    return(
+
         <>
         <Header />
         <main>
@@ -24,6 +25,7 @@ const TipoEvento = () => {
         </main>
         <Footer />
     </>
+    
     )
 }
 

@@ -7,11 +7,11 @@ import Comentar from "../../assets/comentar.png"
 import Checkin from "../../components/checkin/Checkin"
 
 const ListagemEvento = () => {
-    return(
+    return (
+
         <>
-        
-        <Header/>
-        <section className="layout_grid listagem_evento">
+            <Header />
+            <section className="layout_grid listagem_evento">
                 <h1>Eventos</h1>
                 <hr />
                 <div className="tabela_evento">
@@ -34,7 +34,7 @@ const ListagemEvento = () => {
                             <td data-cell="Nome" >Nome Evento</td>
                             <td data-cell="Evento">Tipo Evento</td>
                             <td data-cell="Editar"><img src={Comentar} alt="Imagem de uma caneta" /></td>
-                            <td data-cell="Excluir"><Checkin/></td>
+                            <td data-cell="Excluir"><Checkin /></td>
                         </tr>
                     </tbody>
                     <tbody>
@@ -42,15 +42,13 @@ const ListagemEvento = () => {
                             <td data-cell="Nome" >Nome Evento</td>
                             <td data-cell="Evento">Tipo Evento</td>
                             <td data-cell="Editar"><img src={Comentar} alt="Imagem de uma caneta" /></td>
-                            <td data-cell="Excluir"><Checkin/></td>
+                            <td data-cell="Excluir"><Checkin /></td>
                         </tr>
                     </tbody>
                 </div>
             </section>
-        <Footer/>
-
+            <Footer />
         </>
-
 
     )
 }

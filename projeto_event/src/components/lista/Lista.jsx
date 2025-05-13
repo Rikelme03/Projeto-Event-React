@@ -4,6 +4,7 @@ import Excluir from "../../assets/Excluir.png";
 
 const Lista = (props) => {
     return (
+
         <section className=" listagem">
             <div className="titulo_organizando">
                 <h1>{props.tituloPagina}    </h1>
@@ -14,10 +15,10 @@ const Lista = (props) => {
                 <table>
                     <thead>
                         <tr className="table_cabecalho">
-                            
-                            <th style = {{display:props.tituloVisibilidade}}>Titulo</th>
-                            <th style = {{display:props.visibilidade}}>Nome</th>
-                            <th style = {{display:props.visi}} id="tipoEvento">Tipo Evento </th>
+
+                            <th style={{ display: props.tituloVisibilidade }}>Titulo</th>
+                            <th style={{ display: props.visibilidade }}>Nome</th>
+                            <th style={{ display: props.visi }} id="tipoEvento">Tipo Evento </th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
@@ -25,7 +26,7 @@ const Lista = (props) => {
 
                     <tbody>
                         <tr className="item_lista">
-                            <td data-cell="Nome" style = {{display:props.visibol}} >Nome</td>
+                            <td data-cell="Nome" style={{ display: props.visibol }} >Nome</td>
                             <td data-cell="Tipo Evento" >Tipo Evento</td>
                             <td data-cell="Editar">
                                 <img src={Editar} alt="Ícone editar" />
@@ -38,6 +39,7 @@ const Lista = (props) => {
                 </table>
             </div>
         </section>
+
     );
 };
 

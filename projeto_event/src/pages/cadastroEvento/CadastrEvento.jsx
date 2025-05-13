@@ -6,6 +6,7 @@ import Banner from "../../assets/bannerCadastroEvento.png"
 
 const CadastroEvento = () => {
     return(
+
         <>
         <Header />
         <main>
@@ -20,6 +21,7 @@ const CadastroEvento = () => {
         </main>
         <Footer />
     </>
+    
     )
 }
 

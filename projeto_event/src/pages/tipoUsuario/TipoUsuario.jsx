@@ -6,6 +6,7 @@ import Banner from "../../assets/bannerTipoUsuario.png"
 
 const TipoEvento = () => {
     return(
+
         <>
         <Header />
         <main>
@@ -26,6 +27,7 @@ const TipoEvento = () => {
         </main>
         <Footer />
     </>
+    
     )
 }
 

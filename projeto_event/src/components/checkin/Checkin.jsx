@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const Checkin = () => {
     return(
+
         <> 
     <div className="wrapper"> 
     <label className="switch"> 
@@ -12,6 +13,7 @@ const Checkin = () => {
     </label> 
     </div> 
     </>
+    
     )
 }
 

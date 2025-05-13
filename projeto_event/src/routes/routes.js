@@ -6,6 +6,7 @@ import ListaEventos from "../pages/listagemEvento/ListagemEvento"
 
 const Rotas = () => {
     return(
+
         <BrowserRouter>
             <Routes>
                 <Route path="/" element = {<Login/>} exact/>
@@ -14,6 +15,7 @@ const Rotas = () => {
                 <Route path="/ListaEventos" element = {<ListaEventos/>}/>
             </Routes>
         </BrowserRouter>
+        
     )
 }
 
