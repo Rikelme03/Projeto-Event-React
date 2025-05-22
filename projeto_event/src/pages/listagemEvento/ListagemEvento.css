@@ -79,3 +79,8 @@
 .tabela_evento .item_evento :nth-child(2){
     text-align: start;
 }
+
+tbody button{
+    background-color: transparent;
+    border: 0px;
+}

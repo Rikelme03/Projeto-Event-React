@@ -17,12 +17,14 @@ const Cadastro = (props) => {
                     <img src={props.imagem} alt="Fundo banner do cadastro eventos" />
                 </div>
 
-                <form action="" className="layout_grid form_cadastro">
+                <form onSubmit={props.funcCadastro} className="layout_grid form_cadastro">
 
                     <div className="campos_cadastro">
                         <div className="campo_cad_titulo">
                             <label htmlFor="titulo"></label>
-                            <input type="text" name="nome" placeholder={`${props.namePlace}`} />
+                            <input type="text" name="nome" placeholder={`${props.namePlace}`} 
+                            value={props.ValorInput}    
+                            onChange={(e) => props.setValorInput(e.target.value)}/>
                         </div>
 
                         <div className="campo_cad_tipoevento" style={{ display: props.visibilidade }}>

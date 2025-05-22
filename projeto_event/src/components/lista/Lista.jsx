@@ -25,16 +25,26 @@ const Lista = (props) => {
                     </thead>
 
                     <tbody>
-                        <tr className="item_lista">
+                        {props.lista && props.lista.length > 0 ? (
+                            props.lista.map((item) => (
+                        <tr className="item_lista" Key={props.tipoLista == "tiposEventos" ? item.IdTipoEvento : item.TituloTipoEvento}>
                             <td data-cell="Nome" style={{ display: props.visibol }} >Nome</td>
-                            <td data-cell="Tipo Evento" >Tipo Evento</td>
+                            <td data-cell="Tipo Evento">
+                                {item.tituloTipoEvento}
+                            </td>   
                             <td data-cell="Editar">
+                                <button onClick={() => {props.funcEditar(item)}}>
                                 <img src={Editar} alt="Ícone editar" />
+                                </button>
                             </td>
-                            <td data-cell="Excluir">
-                                <img src={Excluir} alt="Ícone excluir" />
-                            </td>
+                            <td data-cell="Excluir"><img src={Excluir} alt="Lixeira"  onClick={() => props.funcDeletar(item)} /></td>
                         </tr>
+                        ))
+                    )
+                    :(<p>{props.listagemGenFil}</p>
+
+                    )
+                }
                     </tbody>
                 </table>
             </div>

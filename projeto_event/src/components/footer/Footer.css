@@ -2,6 +2,7 @@ footer{
     display: flex;
     justify-content: center;
     height: 35px;
+    margin-top: 10px;
 }
 
 footer p{
