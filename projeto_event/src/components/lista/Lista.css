@@ -63,19 +63,18 @@
   }
 
 .tabela .table_cabecalho :first-child{
-  width: 300px;
+  width: 200px;
   
 }
 
   .tabela .table_cabecalho :nth-child(2){
-    width: 400px;
+    /* width: 400px; */
     text-align: start;
 }
 
-.tabela .item_lista :nth-child(2){
-  width: 400px;
+.tabela .item_lista :nth-child(3){
+     width: 250px;
 }
-
 
 
 
