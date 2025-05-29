@@ -158,15 +158,21 @@ async function editarTiposUsuarios(tipoUsuario){
                 tituloCadastro="CADASTRO TIPO DE USUÁRIO"
                 namePlace="Titulo"
                 visibilidade="none"
+                visiData="none"
+                visiIndefinido="none"
                 imagem= {Banner}
                 funcCadastro= {cadastrarTipoUsuario}
                 ValorInput = {tipoUsuario}
-                setValorInput={setTipoUsuario}
+                setValorInputTitulo={setTipoUsuario}
             />
             <Lista
             tituloPagina="LISTA TIPO DE USUÁRIO"
-            visibilidade="none"
+            tituloDoEvento="Titulo"
+            visiDataEvento="none"
+            visiTipoEvento="none"
+            visiBotaoDescricao="none"
             visibol="none"
+            visiTituloDescricao="none"
             visi="none"
             lista={listaTipoUsuario}
             funcDeletar={deletarTiposUsuarios}

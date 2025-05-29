@@ -29,18 +29,20 @@ const Cadastro = (props) => {
 
                         <div className="campo_cad_titulo">
                             <label htmlFor="Data do evento"></label>
-                            <input type="date" name="" placeholder={`${props.namePlaceData}`} 
+                            <input type="date" name="" placeholder={`${props.namePlaceData}`}
+                            style={{ display: props.visiData }}  
+                            
                             value={props.ValorInputData}    
                             onChange={(e) => props.setValorInputData(e.target.value)}/>
                         </div>
 
                         
                        <div className="campo_cad_tipoevento" style={{ display: props.visibilidade }}>
-                            <select name="Tipo de Evento" id="">
+                            <select name="Tipo de Evento" id="" 
+                
                                  value={props.valorSelectTipoEvento}
                                 onChange={(e) => props.setValorSelectTipoEvento(e.target.value)}
-                            
-
+                            >
                                 <option value="" disabled selected>Tipo de Evento</option>
                                 {props.lista && props.lista.length > 0 && props.lista.map((item) => (
                                     (
@@ -65,6 +67,7 @@ const Cadastro = (props) => {
                         <div className="campo_cad_titulo">
                             <label htmlFor="Data do evento"></label>
                             <input type="text" name="nome" placeholder={`${props.namePlaceDescricao}`} 
+                            style={{ display: props.visiIndefinido }}  
                             value={props.ValorInputDescricao}    
                             onChange={(e) => props.setValorInputDescricao(e.target.value)}/>
                         
