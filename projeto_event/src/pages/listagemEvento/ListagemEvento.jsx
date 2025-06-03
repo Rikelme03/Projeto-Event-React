@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Descricao from "../../assets/Descricao Preta.png";
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import Modal from "../../components/modal/Modal";
 
 const ListagemEvento = () => {
   const [listaEventos, setListaEventos] = useState([]);
@@ -46,8 +47,71 @@ const ListagemEvento = () => {
     listarEvento();
   }, []);
 
+  async function descricaoEvento(evento) {
+        try {
+           Swal.fire({
+           title: evento.nomeEvento,
+           text: evento.descricao,
+           showClass: {
+           popup: `
+            animate__animated
+           animate__fadeInUp
+           animate__faster
+           `
+           },
+           hideClass: {
+           popup: `
+           animate__animated
+           animate__fadeOutDown
+           animate__faster
+          `
+        }
+        });
+                  } catch (error) {
+                  }
+              }
 
-  
+
+          async function comentarEvento(item) {
+           try {
+            const { value: comentario } = await Swal.fire({
+              title: 'Comentar Evento',
+              input: 'textarea',
+              inputLabel: `Comentário para o evento "${item.nomeEvento}"`,
+              inputPlaceholder: 'Digite seu comentário aqui...',
+              inputAttributes: {
+                'aria-label': 'Digite seu comentário aqui'
+              },
+              showCancelButton: true,
+              confirmButtonText: 'Enviar',
+              cancelButtonText: 'Cancelar',
+            });
+
+            if (!comentario) {
+              throw new Error('Comentário vazio ou cancelado');
+            }
+
+            // Aqui você pode enviar para uma API ou manipular o estado
+            console.log(`Comentário do evento "${item.nomeEvento}":`, comentario);
+
+            await Swal.fire({
+              icon: 'success',
+              title: 'Comentário enviado!',
+              text: 'Seu comentário foi registrado com sucesso.',
+            });
+
+          } catch (error) {
+            console.error('Erro ao comentar evento:', error.message);
+
+            if (error.message !== 'Comentário vazio ou cancelado') {
+              Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Houve um problema ao enviar o comentário.',
+              });
+            }
+          }
+              }
 
 
   return (
@@ -61,8 +125,7 @@ const ListagemEvento = () => {
             name="Todos os Eventos"
             className="select_evento"
             value={valorSelectEventos}
-            onChange={(e) => setvalorSelectEventos(e.target.value)}
-          >
+            onChange={(e) => setvalorSelectEventos(e.target.value)}>
             <option value="" disabled>
               Evento
             </option>
@@ -86,17 +149,20 @@ const ListagemEvento = () => {
                 {listaEventos.map((item) =>(
               <tr className="item_evento">
                 <td data-cell="Nome">{item.nomeEvento}</td>
-                <td data-cell="Nome">{item.dataEvento
-                ? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR }) : ""}
-                {item.tituloTipoEvento} {item.tituloTipoUsuario}</td>
-                <td data-cell="Evento">{item.tituloTipoEvento}</td>
-                <td data-cell="Evento">
-                    <img src={Descricao} alt="" />
-                </td>
+                <td data-cell="Data">{item.dataEvento? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR}) : ""}
+              </td>
+                <td data-cell="TipoEvento">{item.tiposEvento.tituloTipoEvento}</td>
+                <td data-cell="evento">
+                   <button onClick={() => descricaoEvento(item) }>
+                       <img src={Descricao} alt="Ícone editar" />
+                   </button>
+               </td>
                 <td data-cell="Editar">
+                  <button onClick={() => comentarEvento(item)}>
                   <img src={Comentar} alt="Comentar" />
+                  </button>
                 </td>
-                <td data-cell="Excluir">
+                <td data-cell="Participar">
                   <Checkin />
                 </td>
               </tr>
@@ -106,6 +172,7 @@ const ListagemEvento = () => {
         </div>
       </section>
       <Footer />
+      <Modal/>
     </>
   );
 };

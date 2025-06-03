@@ -1,7 +1,7 @@
 import "./Header.css"
 import Logo from "../../assets/logoEvent.svg"
 import Logo_adm from "../../assets/Vector.png"
-
+import { Link } from "react-router-dom"
 
 const Header = () => {
     return (
@@ -10,10 +10,10 @@ const Header = () => {
             <div className="layout_grid cabecalho">
                 <img src={Logo} alt="Logo Evento" />
                 <nav className="nav_header">
-                    <a href="" className="link_header">Home</a>
-                    <a href="" className="link_header">Eventos</a>
-                    <a href="" className="link_header">Usuários</a>
-                    <a href="" className="link_header">Contatos</a>
+                     <Link className="link_header" to="/Home" href="">Home</Link>
+                     <Link className="link_header" to="/ListaEventos" href="">Eventos</Link>
+                     <Link className="link_header" to="/TipoEvento" href="">Usuários</Link>
+                     <Link className="link_header" to="/" href="">Contatos</Link>
                 </nav>
                 <div className="Adm">
                     <a href="" className="link_header">Administrador</a>

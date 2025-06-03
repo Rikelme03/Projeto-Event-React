@@ -54,28 +54,28 @@
 
 
 .tabela_evento .table_evento :first-child {
-    width: 400px;
+    width: 300px;
     
 }
 
 .tabela_evento .table_evento :nth-child(2) {
-    width: 250px;
+    width: 240px;
     text-align: start;
 }
 
 .tabela_evento .table_evento :nth-child(3) {
-    width: 200px;
-    text-align: start;
+    width: 150px;
+    text-align: center;
 }
 
 .tabela_evento .table_evento :nth-child(4) {
     width: 150px;
-    text-align: start;
+    text-align: center;
 }
 
 .tabela_evento .table_evento :nth-child(5) {
-    width: 200px;
-    text-align: start;
+    width: 150px;
+    text-align: center;
 }
 
 .tabela_evento .table_evento th {

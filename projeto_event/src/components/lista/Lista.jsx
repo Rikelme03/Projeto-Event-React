@@ -8,8 +8,6 @@ import { ptBR } from 'date-fns/locale';
 const Lista = (props) => {
     return (
 
-
-
         <section className=" listagem">
             <div className="titulo_organizando">
                 <h1>{props.tituloPagina}    </h1>
