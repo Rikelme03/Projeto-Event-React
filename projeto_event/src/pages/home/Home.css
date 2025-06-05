@@ -41,7 +41,9 @@ header{
     border: 0px;
 }
 
-
+.orgProximosEventos{
+    height: 400px;
+}
 
 .organizandoHomeFundo img{
     width: 100%;
@@ -64,9 +66,37 @@ header{
 }
 
 .orgArticles {
-    height: 200px;
-    width: 400px;
-    border: 2px solid red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.orgArticles  article{
+    border-radius: 5px;
+    margin-top: 50px;
+    height: 250px;
+    width: 220px;
+    border: 2px solid #86224D;
+}
+
+.orgDentroDoArticle{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.orgDentroDoArticle a{
+    color: #B51D44;
+    text-decoration:none;
+
+}
+
+.orgBannerVisao img{
+    height: 380px;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) {

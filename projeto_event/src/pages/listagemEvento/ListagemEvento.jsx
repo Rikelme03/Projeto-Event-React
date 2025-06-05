@@ -15,6 +15,15 @@ const ListagemEvento = () => {
   const [listaEventos, setListaEventos] = useState([]);
   const [valorSelectEventos, setvalorSelectEventos] = useState("");
 
+  //Modal
+  const [tipoModal, setTipoModal] = useState({});//descricao Evento ou Comentario
+  const [dadosModal, setDadosModal] = useState({});//descricao do modal
+  const [modalAberto, setModalAberto] = useState(false)
+
+  //Filtro
+  const [filtroData, setFiltroData] = useState(["todos"])
+  const [usuarioId, setUsuarioId] = useState("4E09F7E2-2273-472C-AFA9-DA857CECB321")
+
   function alertar(icone, mensagem) {
     const Toast = Swal.mixin({
       toast: true,
@@ -33,86 +42,108 @@ const ListagemEvento = () => {
     });
   }
 
-  async function listarEvento() {
+
+
+  async function listarEventos() {
     try {
-      const eventoListado = await api.get("Eventos");
-      setListaEventos(eventoListado.data);
-      
+      //pego o eventos em geral
+      const resposta = await api.get("eventos");
+      const todosOsEventos = resposta.data;
+      const respostaPresencas = await api.get("PresencasEventos/ListarMinhas/" + usuarioId)
+      const minhasPresencas = respostaPresencas.data;
+
+      const eventosComPresencas = todosOsEventos.map((atualEvento) => {
+        const presenca = minhasPresencas.find(p => p.idEvento === atualEvento.idEvento);
+        return {
+          ...atualEvento,
+
+          possuiPresenca: presenca?.situacao === true,
+        }
+      })
+
+      setListaEventos(eventosComPresencas)
+
+
     } catch (error) {
-      console.log(error);
+      console.error("Erro ao buscar eventos:", error);
     }
   }
 
+  async function manipularPresenca(idEvento, presenca, idPresenca) {
+    try {
+      if (presenca && idPresenca != "") {
+        //atulizar: situacao para Falso
+        await api.put(`PresencasEventos/${idPresenca}`, { situacao: false })
+
+
+
+
+      } else if (idPresenca != "") {
+        //atulizar: situacao para True
+        await api.put(`PresencasEventos/${idPresenca}`, { situacao: true })
+
+      } else {
+        //Cadastrar uma nova presenca 
+        await api.put("PresencasEventos", { situacao: true, idUsuario: usuarioId, idEvento: idEvento })
+        listarEventos()
+      }
+    } catch (error) {
+      console.log(error);
+      console.log(idPresenca);
+      console.log(usuarioId);
+      console.log(idEvento);
+      console.log(idEvento);
+    }
+  }
+
+
   useEffect(() => {
-    listarEvento();
+    listarEventos()
   }, []);
 
-  async function descricaoEvento(evento) {
-        try {
-           Swal.fire({
-           title: evento.nomeEvento,
-           text: evento.descricao,
-           showClass: {
-           popup: `
-            animate__animated
-           animate__fadeInUp
-           animate__faster
-           `
-           },
-           hideClass: {
-           popup: `
-           animate__animated
-           animate__fadeOutDown
-           animate__faster
-          `
-        }
-        });
-                  } catch (error) {
-                  }
-              }
 
 
-          async function comentarEvento(item) {
-           try {
-            const { value: comentario } = await Swal.fire({
-              title: 'Comentar Evento',
-              input: 'textarea',
-              inputLabel: `Comentário para o evento "${item.nomeEvento}"`,
-              inputPlaceholder: 'Digite seu comentário aqui...',
-              inputAttributes: {
-                'aria-label': 'Digite seu comentário aqui'
-              },
-              showCancelButton: true,
-              confirmButtonText: 'Enviar',
-              cancelButtonText: 'Cancelar',
-            });
+  function abrirModal(tipo, dados) {
 
-            if (!comentario) {
-              throw new Error('Comentário vazio ou cancelado');
-            }
+    //tipo de modal
+    //dados
 
-            // Aqui você pode enviar para uma API ou manipular o estado
-            console.log(`Comentário do evento "${item.nomeEvento}":`, comentario);
 
-            await Swal.fire({
-              icon: 'success',
-              title: 'Comentário enviado!',
-              text: 'Seu comentário foi registrado com sucesso.',
-            });
+    setModalAberto(true)
+    setDadosModal(tipo)
+    setTipoModal(dados)
 
-          } catch (error) {
-            console.error('Erro ao comentar evento:', error.message);
+  }
 
-            if (error.message !== 'Comentário vazio ou cancelado') {
-              Swal.fire({
-                icon: 'error',
-                title: 'Erro',
-                text: 'Houve um problema ao enviar o comentário.',
-              });
-            }
-          }
-              }
+  function fecharModal(tipo, dados) {
 
+    //tipo de modal
+    //dados
+
+
+    setModalAberto(false)
+    setDadosModal({})
+    setTipoModal("")
+
+  }
+
+  async function cadastrarComentario() {
+
+  }
+
+  function filtrarEventos() {
+    const hoje = new Date();
+    return listaEventos.filter(evento => {
+      const dataEvento = new Date(evento.dataEvento);
+      if (filtroData.includes("todos")) return true;
+      if (filtroData.includes("futuros") && dataEvento > hoje) return true;
+      if (filtroData.includes("passados") && dataEvento < hoje) return true;
+
+      return false;
+    });
+  }
+
+  
 
   return (
     <>
@@ -121,17 +152,10 @@ const ListagemEvento = () => {
         <h1>Eventos</h1>
         <hr />
         <div className="tabela_evento">
-          <select
-            name="Todos os Eventos"
-            className="select_evento"
-            value={valorSelectEventos}
-            onChange={(e) => setvalorSelectEventos(e.target.value)}>
-            <option value="" disabled>
-              Evento
-            </option>
-            {listaEventos.map((item) => (
-              <option value={item.idEvento}>{item.nomeEvento}</option>
-            ))}
+          <select className="select_evento" onChange={(e) => setFiltroData([e.target.value])}>
+            <option value="todos" selected>Todos os eventos</option>
+            <option value="fututros" selected>Eventos Futuros</option>
+            <option value="passados" selected>Eventos que pasaram</option>
           </select>
 
           <table>
@@ -146,33 +170,46 @@ const ListagemEvento = () => {
               </tr>
             </thead>
             <tbody>
-                {listaEventos.map((item) =>(
-              <tr className="item_evento">
-                <td data-cell="Nome">{item.nomeEvento}</td>
-                <td data-cell="Data">{item.dataEvento? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR}) : ""}
-              </td>
-                <td data-cell="TipoEvento">{item.tiposEvento.tituloTipoEvento}</td>
-                <td data-cell="evento">
-                   <button onClick={() => descricaoEvento(item) }>
-                       <img src={Descricao} alt="Ícone editar" />
-                   </button>
-               </td>
-                <td data-cell="Editar">
-                  <button onClick={() => comentarEvento(item)}>
-                  <img src={Comentar} alt="Comentar" />
-                  </button>
-                </td>
-                <td data-cell="Participar">
-                  <Checkin />
-                </td>
-              </tr>
-            ))}
+              {listaEventos.map((item) => (
+                filtrarEventos() && filtrarEventos().map((item) => (
+                  <tr className="item_evento">
+                    <td data-cell="Nome">{item.nomeEvento} </td>
+                    <td data-cell="Data">{item.dataEvento ? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR }) : ""}
+                    </td>
+                    <td data-cell="TipoEvento">{item.tiposEvento.tituloTipoEvento}</td>
+                    <td data-cell="evento">
+                      <button onClick={() => abrirModal("descricaoEvento", { descricao: item.Descricao })}>
+                        <img src={Descricao} alt="Ícone editar" />
+                      </button>
+                    </td>
+                    <td data-cell="Editar">
+                      <button onClick={() => abrirModal("Comentarios", { idEvento: item.idEvento })}>
+                        <img src={Comentar} alt="Comentar" />
+                      </button>
+                    </td>
+                    <td data-cell="Participar">
+                      <Checkin presenca={item.possuiPresenca}
+                        manipular={() => manipularPresenca(item.idEvento, item.possuiPresenca, item.idPresenca)}
+                      />
+                    </td>
+                  </tr>
+                ))))}
             </tbody>
           </table>
         </div>
       </section>
       <Footer />
-      <Modal/>
+
+      {modalAberto && (
+        <Modal
+          titulo={tipoModal == "descricaoEvento" ? "Descricao do evento" : "Comentario"}
+          tipoModel={tipoModal}
+          idEvento={dadosModal.idEvento}
+          descricao={dadosModal.descricao}
+          fecharModal={fecharModal}
+
+        />
+      )}
     </>
   );
 };

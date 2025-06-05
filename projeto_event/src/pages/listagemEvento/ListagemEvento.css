@@ -12,7 +12,7 @@
 }
 
 .listagem_evento{
-    height: 570px;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -82,7 +82,6 @@
     border-bottom: 2px solid #B51D44;
     width: 100px;
     margin-top: 40px;
-    
 }
 
 .item_evento td {

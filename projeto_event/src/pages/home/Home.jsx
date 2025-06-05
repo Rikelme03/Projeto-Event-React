@@ -2,6 +2,8 @@ import "./Home.css";
 import { Link } from "react-router-dom"
 import Logo from "../../assets/logoEvent.svg"
 import TelaFundo from "../../assets/TelaFundoHome.png"
+import TelaFundoVisao from "../../assets/TelaHomeVisao.png"
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
     return (
@@ -33,46 +35,48 @@ const Home = () => {
                 <hr />
                 </div>
 
-                <div className="orgArticles">
+                <div className="orgArticles layout_grid">
 
                     <article className="orgDentroDoArticle">
-                        <h2>Titulo do Evento</h2>
+                        <h3>Titulo do Evento</h3>
 
                         <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
 
-                        <h3>Conectar</h3>
+                        <a href="">Conectar</a>
                     </article>
 
                     <article className="orgDentroDoArticle">
-                        <h2>Titulo do Evento</h2>
+                        <h3>Titulo do Evento</h3>
 
                         <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
 
-                        <h3>Conectar</h3>
+                        <a href="">Conectar</a>
                     </article>
 
                     <article className="orgDentroDoArticle">
-                        <h2>Titulo do Evento</h2>
+                        <h3>Titulo do Evento</h3>
 
                         <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
 
-                        <h3>Conectar</h3>
+                        <a href="">Conectar</a>
                     </article>
 
-                    <article className="orgDentroDoArticle">
-                        <h2>Titulo do Evento</h2>
+                    <article className="orgDentroDoArticle ">
+                        <h3>Titulo do Evento</h3>
 
                         <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
 
-                        <h3>Conectar</h3>
+                        <a href="">Conectar</a>
                     </article>
 
 
                 </div>
-
+                <div className="orgBannerVisao">
+                    <img src={TelaFundoVisao} alt="" />
+                </div>
             </section>
-
         </main>
+        
         
         </>
     )
