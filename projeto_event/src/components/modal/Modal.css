@@ -1,58 +1,116 @@
-.model-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro transparente */
-  z-index: 999;
-}
-
 .model {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 8px;
-  z-index: 1000;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    /* Fica fixo na tela */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Centraliza */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+    z-index: 1001;
+    /* Muito alto para sobrepor outros elementos */
+    font-family: Arial, sans-serif;
 }
 
+
+/* Fundo escurecido atrás do modal */
+.model-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    /* um pouco menor que o modal */
+}
+
+
+/* Restante do estilo continua igual */
 .model h1 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
 }
 
-.model_conteudo {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
 .model_conteudo p {
-  margin: 0;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: center;
 }
+
+
+.model_conteudo>div {
+    margin-bottom: 20px;
+}
+
+
+.model_conteudo strong {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+
+.model_conteudo img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    float: right;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+.model_conteudo img:hover {
+    transform: scale(1.2);
+}
+
+
+.model_conteudo hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
 
 .model_conteudo input[type="text"] {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-top: 10px;
 }
 
-.model_conteudo button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #1a1144;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+
+.model_conteudo .botao {
+    margin-top: 10px;
+    /* display: block; */
 }
 
-.model_conteudo button:hover {
-  background-color: #B51D44;
+
+.botao button {
+    background-color: #c2185b;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.botao button:hover {
+    background-color: #ad1457;
+    
 }

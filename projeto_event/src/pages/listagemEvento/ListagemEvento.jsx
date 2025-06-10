@@ -21,7 +21,7 @@ const ListagemEvento = () => {
   const [modalAberto, setModalAberto] = useState(false)
 
   //Filtro
-  const [filtroData, setFiltroData] = useState(["todos"])
+  const [filtroData, setFiltroData] = useState(["todos"]);
   const [usuarioId, setUsuarioId] = useState("4E09F7E2-2273-472C-AFA9-DA857CECB321")
 
   function alertar(icone, mensagem) {
@@ -97,17 +97,12 @@ const ListagemEvento = () => {
   }
 
 
-  useEffect(() => {
-    listarEventos()
-  }, []);
-
+    useEffect(() => {
+        listarEventos();
+    }, [])
 
 
   function abrirModal(tipo, dados) {
-
-    //tipo de modal
-    //dados
-
 
     setModalAberto(true)
     setDadosModal(tipo)
@@ -115,10 +110,7 @@ const ListagemEvento = () => {
 
   }
 
-  function fecharModal(tipo, dados) {
-
-    //tipo de modal
-    //dados
+  function fecharmodal(tipo, dados) {
 
 
     setModalAberto(false)
@@ -127,14 +119,16 @@ const ListagemEvento = () => {
 
   }
 
-  async function cadastrarComentario() {
+  // async function cadastrarComentario() {
 
-  }
+  // }
 
   function filtrarEventos() {
     const hoje = new Date();
+
     return listaEventos.filter(evento => {
       const dataEvento = new Date(evento.dataEvento);
+
       if (filtroData.includes("todos")) return true;
       if (filtroData.includes("futuros") && dataEvento > hoje) return true;
       if (filtroData.includes("passados") && dataEvento < hoje) return true;
@@ -143,7 +137,8 @@ const ListagemEvento = () => {
     });
   }
 
-  
+
+
 
   return (
     <>
@@ -151,65 +146,69 @@ const ListagemEvento = () => {
       <section className="layout_grid listagem_evento">
         <h1>Eventos</h1>
         <hr />
-        <div className="tabela_evento">
-          <select className="select_evento" onChange={(e) => setFiltroData([e.target.value])}>
-            <option value="todos" selected>Todos os eventos</option>
-            <option value="fututros" selected>Eventos Futuros</option>
-            <option value="passados" selected>Eventos que pasaram</option>
-          </select>
+        
+      <div className="tabela_evento">
+        <select className="select_evento" 
+         onChange={(e) => setFiltroData([e.target.value])}>
+        <option value="todos" selected>Todos os eventos</option>
+        <option value="futuros">Somente futuros</option>
+        <option value="passados">Somente passados</option>
+        </select>
 
-          <table>
-            <thead>
-              <tr className="table_evento">
-                <th>Título</th>
-                <th>Data Evento</th>
-                <th>Tipo Evento</th>
-                <th>Descricao</th>
-                <th>Comentários</th>
-                <th>Participar</th>
+        <table>
+          <thead>
+            <tr className="table_evento">
+              <th>Título</th>
+              <th>Data Evento</th>
+              <th>Tipo Evento</th>
+              <th>Descricao</th>
+              <th>Comentários</th>
+              <th>Participar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtrarEventos().map((item) => (
+              <tr key={item.idEvento} className="item_evento">
+                <td data-cell="Nome">{item.nomeEvento}</td>
+                <td data-cell="Data">
+                  {item.dataEvento ? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR }) : ""}
+                </td>
+                <td data-cell="TipoEvento">{item.tiposEvento.tituloTipoEvento}</td>
+                <td data-cell="evento">
+                  <button onClick={() => abrirModal("descricaoEvento", { descricao: item.Descricao })}>
+                    <img src={Descricao} alt="Ícone editar" />
+                  </button>
+                </td>
+                <td data-cell="Editar">
+                  <button onClick={() => abrirModal("Comentarios", { idEvento: item.idEvento })}>
+                    <img src={Comentar} alt="Comentar" />
+                  </button>
+                </td>
+                <td data-cell="Participar">
+                  <Checkin
+                    presenca={item.possuiPresenca}
+                    manipular={() => manipularPresenca(item.idEvento, item.possuiPresenca, item.idPresenca)}
+                  />
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {listaEventos.map((item) => (
-                filtrarEventos() && filtrarEventos().map((item) => (
-                  <tr className="item_evento">
-                    <td data-cell="Nome">{item.nomeEvento} </td>
-                    <td data-cell="Data">{item.dataEvento ? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR }) : ""}
-                    </td>
-                    <td data-cell="TipoEvento">{item.tiposEvento.tituloTipoEvento}</td>
-                    <td data-cell="evento">
-                      <button onClick={() => abrirModal("descricaoEvento", { descricao: item.Descricao })}>
-                        <img src={Descricao} alt="Ícone editar" />
-                      </button>
-                    </td>
-                    <td data-cell="Editar">
-                      <button onClick={() => abrirModal("Comentarios", { idEvento: item.idEvento })}>
-                        <img src={Comentar} alt="Comentar" />
-                      </button>
-                    </td>
-                    <td data-cell="Participar">
-                      <Checkin presenca={item.possuiPresenca}
-                        manipular={() => manipularPresenca(item.idEvento, item.possuiPresenca, item.idPresenca)}
-                      />
-                    </td>
-                  </tr>
-                ))))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section >
       <Footer />
-
-      {modalAberto && (
-        <Modal
-          titulo={tipoModal == "descricaoEvento" ? "Descricao do evento" : "Comentario"}
-          tipoModel={tipoModal}
-          idEvento={dadosModal.idEvento}
-          descricao={dadosModal.descricao}
-          fecharModal={fecharModal}
-
-        />
-      )}
+  {
+    modalAberto && (
+      <Modal
+      titulo={tipoModal === "descricaoEvento" ? "Descrição do evento" : "comentario"}
+      
+      tipoModel={tipoModal}
+      idEvento={dadosModal.idEvento}
+      descricao={dadosModal.descricao}
+      fecharModal={fecharmodal}
+    />
+    )
+  }
     </>
   );
 };

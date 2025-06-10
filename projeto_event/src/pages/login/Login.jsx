@@ -2,36 +2,103 @@ import "./Login.css";
 import LogoEvent from "../../assets/logoEvent.svg"
 import Logo from "../../assets/logo.png"
 import Botao from "../../components/botao/Botao";
+import api from "../../Services/services";
+import { useState } from "react";
+import Swal from 'sweetalert2';
+import { userDecodeToken } from "../../auth/Auth"
+import  secureLocalStorage  from  "react-secure-storage";
+import { useNavigate } from "react-router";
 
-const Login = () =>{
+const Login = () => {
+
+    const [email, setEmail] = useState("")
+    const [senha, setSenha] = useState("")
+    const naviGate = useNavigate();
+
+    function alertar(icone, mensagem) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: icone,
+            title: mensagem
+        });
+    }
+
+    async function realizarAutenticacao(e) {
+        e.preventDefault();
+        try {
+
+            const usuario = {
+                email: email,
+                senha: senha
+            }
+
+            if (senha.trim() != "" || email.trim() != "") {
+
+
+                const resposta = await api.post("Login", usuario)
+
+                const token = resposta.data.token;
+
+                if (token) {
+                    const tokenDecodificado = userDecodeToken(token)
+                    // console.log(tokenDecodificado);
+                    // console.log(tokenDecodificado.tipoUsuario);
+                    secureLocalStorage.setItem("tokenLogin",JSON.stringify(tokenDecodificado));
+
+                    if (tokenDecodificado.tipoUsuario === "alunos") {              
+                        //redirecionar a tela aluno(branco)
+                        naviGate("/home")
+                    } else {
+                        naviGate("/ListaEventos")
+                    }
+                    } else {
+                alertar("error", "Preencha os campos !")
+            }
+    }
+
+        } catch (error) {
+            console.log(error);
+            alertar("error", "Email ou senha invalidos !")
+        }
+    }
+
+
     return (
         <main className="main_login">
-            <div className="logoBanner"> 
+            <div className="logoBanner">
                 <img src={Logo} alt="" />
 
             </div>
             <section className="section_login">
 
-                <form action="" className="form_cadastro">
-                <img src= {LogoEvent} alt="Logo do event+" />
-                
-                <div className="campos_login">
+                <form action="" className="form_cadastro" onSubmit={realizarAutenticacao}>
+                    <img src={LogoEvent} alt="Logo do event+" />
 
-                <div className="campo_input">
-                    <input type="nome" name="nome" placeholder="Username" />
-                </div>
+                    <div className="campos_login">
 
-                <div className="campo_input">
-                    <input type="nome" name="nome" placeholder="Password" />
-                </div>
-                </div>
-                <a href="">Esqueceu a senha?</a>
-                <Botao nomeDoBotao = "Login"/>
+                        <div className="campo_input">
+                            <input type="Email" name="Email" placeholder="Username"
+                                value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+
+                        <div className="campo_input">
+                            <input type="senha" name="Senha" placeholder="Password"
+                                value={senha} onChange={(e) => setSenha(e.target.value)} />
+                        </div>
+                    </div>
+                    <a href="">Esqueceu a senha?</a>
+                    <Botao nomeDoBotao="Login" />
                 </form>
-                
-
-
-
 
             </section>
         </main>

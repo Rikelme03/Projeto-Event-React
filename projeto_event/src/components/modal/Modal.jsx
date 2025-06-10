@@ -3,46 +3,56 @@ import ImgDeletar from "../../assets/Excluir.png";
 import "./Modal.css";
 import api from "../../Services/services";
 
-const Modal = (props) => {
+const Model = (props) => {
+
   const [comentarios, setComentarios] = useState([]);
-    const [usuarioId, setUsuarioId] = useState("4E09F7E2-2273-472C-AFA9-DA857CECB321")
-    const [novoComentario,setNovoComentario] = useState("")
+  const [novoComentario, setNovoComentario] = useState("");
+  const [usuario, setUsuario] = useState("D96778D2-02A6-4BE3-832E-556D65392271");
+
 
   async function listarComentarios() {
     try {
       const resposta = await api.get(`ComentariosEventos/ListarSomenteExibe?id=${props.idEvento}`);
+
       setComentarios(resposta.data);
+
+      console.log(resposta.data);
+
+
     } catch (error) {
       console.log(error);
+
     }
   }
 
   useEffect(() => {
     listarComentarios();
-  }, []);
+  }, [comentarios])
 
-  async function cadastrarComentario() {
+
+  async function excluirComentario(idComentario) {
     try {
-      await api.post("ComentariosEventos", {idUsuario:usuarioId , idEvento: props.idEvento, Descricao: comentarios})
+      await api.delete(`ComentariosEventos/${idComentario}`);
     } catch (error) {
-      console.log(error);
-      
+      console.log(error)
     }
   }
 
-  // async function () {
-    
-  // }
-
-  async function deletarComentario(idComentario) {
+  async function cadastrarComentario(comentario) {
     try {
-      await api.delete(`ComentariosEventos/${idComentario}`)
+      await api.post("ComentariosEventos", {
+        idUsuario: usuario,
+        idEvento: props.idEvento,
+        descricao: comentario
+      })
     } catch (error) {
-      console.log(error);
-      
+      console.error(error);
     }
   }
 
+  useEffect(() => {
+    listarComentarios()
+  }, [])
 
   return (
     <>
@@ -56,25 +66,38 @@ const Modal = (props) => {
             <>
               {comentarios.map((item) => (
                 <div key={item.idComentarioEvento}>
-                  <strong>{item.usuario.nomeUsuario}</strong>
-                  <img src={ImgDeletar} alt="Deletar" onClick={() => deletarComentario(item.idComentarioEvento)}/>
+                  <strong>{item.usuario.nomeUsuario}</strong> 
+
+                  <img
+                    src={ImgDeletar}
+                    alt="Deletar"
+                    onClick={() => excluirComentario(item.idComentarioEvento)}
+                  />
+
                   <p>{item.descricao}</p>
                   <hr />
                 </div>
               ))}
               <div>
-                <input type="text" placeholder="Escreva seu comentario..." 
+                <input
+                  type="text"
                   value={novoComentario}
                   onChange={(e) => setNovoComentario(e.target.value)}
-                />
-                <button onClick={() => cadastrarComentario(novoComentario)}>Cadastrar</button>
+                  placeholder="Escreva seu comentário..." />
+
+                <button
+                  onClick={() => cadastrarComentario(novoComentario)}
+                  className="botao">
+                  cadastrar
+                </button>
               </div>
             </>
           )}
         </div>
-      </div>
+      </div >
     </>
   );
-};
 
-export default Modal;
+}
+
+export default Model;

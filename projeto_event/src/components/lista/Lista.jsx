@@ -21,7 +21,7 @@ const Lista = (props) => {
 
                             <th>{props.tituloDoEvento}</th>
                             <th style={{ display: props.visiDataEvento }}>Data Evento</th>
-                            <th style={{ display: props.visiTipoEvento }}>Tipo Evento</th>
+                            <th >{props.visiTipoEvento}</th>
                             <th style={{ display: props.titulo }}></th><th>Editar</th>
                             <th>Excluir</th>
                             <th>{props.tituloDescricao}</th>

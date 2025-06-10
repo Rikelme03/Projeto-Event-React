@@ -253,6 +253,7 @@ const CadastroEvento = () => {
                     funcDeletar={deletarEvento}
                     descricao={descricaoEvento}
                     funcEditar={editarEvento}
+                    visiTipoEvento="Tipo Evento"
                 />
             </main>
             <Footer />
