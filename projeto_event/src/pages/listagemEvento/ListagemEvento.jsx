@@ -2,7 +2,6 @@ import "./ListagemEvento.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import Comentar from "../../assets/comentar.png";
-import Toggle from "../../components/toggle/Toggle";
 import Swal from 'sweetalert2';
 import api from "../../Services/services";
 import { useEffect, useState } from "react";
@@ -11,6 +10,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import Modal from "../../components/modal/Modal";
 import { useAuth } from "../../contexts/AuthContext";
+import Checkin from "../../components/checkin/Checkin";
 
 const ListagemEvento = () => {
   const [listaEventos, setListaEventos] = useState([]);
@@ -23,9 +23,9 @@ const ListagemEvento = () => {
 
   //Filtro
   const [filtroData, setFiltroData] = useState(["todos"]);
-  const {usuario } = useAuth();
+  const { usuario } = useAuth();
   // const [usuarioId, setUsuarioId] = useState("4E09F7E2-2273-472C-AFA9-DA857CECB321")
-  
+
   function alertar(icone, mensagem) {
     const Toast = Swal.mixin({
       toast: true,
@@ -43,9 +43,9 @@ const ListagemEvento = () => {
       title: mensagem
     });
   }
-  
-  
-  
+
+
+
   async function listarEventos() {
     try {
       //pego o eventos em geral
@@ -53,24 +53,24 @@ const ListagemEvento = () => {
       const todosOsEventos = resposta.data;
       const respostaPresencas = await api.get("PresencasEventos/ListarMinhas/" + usuario.idUsuario)
       const minhasPresencas = respostaPresencas.data;
-      
+
       const eventosComPresencas = todosOsEventos.map((atualEvento) => {
         const presenca = minhasPresencas.find(p => p.idEvento === atualEvento.idEvento);
         return {
           ...atualEvento,
-          
+
           possuiPresenca: presenca?.situacao === true,
         }
       })
-      
+
       setListaEventos(eventosComPresencas)
-      
-      
+
+
     } catch (error) {
       console.error("Erro ao buscar eventos:", error);
     }
   }
-  
+
   async function manipularPresenca(idEvento, presenca, idPresenca) {
     try {
       if (presenca && idPresenca) {
@@ -87,41 +87,66 @@ const ListagemEvento = () => {
         });
         Swal.fire("Confirmado", "Sua presença foi confirmada.", "success");
       }
-      
+
       listarEventos();
     } catch (error) {
       console.error("Erro ao manipular presença:", error);
       Swal.fire("Erro", "Não foi possível atualizar sua presença.", "error");
     }
   }
-  
-  
+
+  async function descricaoEvento(evento) {
+    try {
+      Swal.fire({
+        title: evento.nomeEvento,
+        text: evento.descricao,
+        showClass: {
+          popup: `
+            animate__animated
+           animate__fadeInUp
+           animate__faster
+           `
+        },
+        hideClass: {
+          popup: `
+           animate__animated
+           animate__fadeOutDown
+           animate__faster
+          `
+        }
+      });
+    } catch (error) {
+    }
+  }
+
+
   useEffect(() => {
     listarEventos();
-  
-      }, [])
 
+  }, [])
 
-  function abrirModal(tipo, dados) {
-
-    setModalAberto(true)
-    setDadosModal(tipo)
-    setTipoModal(dados)
-
+  async function comentarEvento(item) {
+     if (!item.comentarios || item.comentarios.length === 0) {
+    return Swal.fire({
+      icon: 'info',
+      title: 'Sem comentários',
+      text: `O evento "${item.nomeEvento}" ainda não possui comentários.`,
+    });
   }
 
-  function fecharmodal(tipo, dados) {
+  const listaHtml = item.comentarios.map((coment, i) => 
+    `<li style="margin-bottom: 10px;"><strong>Comentário ${i + 1}:</strong> ${coment}</li>`
+  ).join('');
+
+  await Swal.fire({
+    title: `Comentários de "${item.nomeEvento}"`,
+    html: `<ul style="text-align: left; padding-left: 20px;">${listaHtml}</ul>`,
+    confirmButtonText: 'Fechar',
+  });
+}
 
 
-    setModalAberto(false)
-    setDadosModal({})
-    setTipoModal("")
 
-  }
-
-  // async function cadastrarComentario() {
-
-  // }
 
   function filtrarEventos() {
     const hoje = new Date();
@@ -146,52 +171,52 @@ const ListagemEvento = () => {
       <section className="layout_grid listagem_evento">
         <h1>Eventos</h1>
         <hr />
-        
-      <div className="tabela_evento">
-        <select className="select_evento" 
-         onChange={(e) => setFiltroData([e.target.value])}>
-        <option value="todos" selected>Todos os eventos</option>
-        <option value="futuros">Somente futuros</option>
-        <option value="passados">Somente passados</option>
-        </select>
 
-        <table>
-          <thead>
-            <tr className="table_evento">
-              <th>Título</th>
-              <th>Data Evento</th>
-              <th>Tipo Evento</th>
-              <th>Descricao</th>
-              <th>Comentários</th>
-              <th>Participar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtrarEventos().map((item) => (
-              <tr key={item.idEvento} className="item_evento">
-                <td data-cell="Nome">{item.nomeEvento}</td>
-                <td data-cell="Data">
-                  {item.dataEvento ? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR }) : ""}
-                </td>
-                <td data-cell="TipoEvento">{item.tiposEvento.tituloTipoEvento}</td>
-                <td data-cell="evento">
-                  <button >
-                    <img src={Descricao} alt="Ícone editar" />
-                  </button>
-                </td>
-                <td data-cell="Editar">
-                  <button onClick={() => abrirModal("Comentarios", { idEvento: item.idEvento })}>
-                    <img src={Comentar} alt="Comentar" />
-                  </button>
-                </td>
-                <td data-cell="Participar">
-                </td>
+        <div className="tabela_evento">
+          <select className="select_evento"
+            onChange={(e) => setFiltroData([e.target.value])}>
+            <option value="todos" selected>Todos os eventos</option>
+            <option value="futuros">Somente futuros</option>
+            <option value="passados">Somente passados</option>
+          </select>
+
+          <table>
+            <thead>
+              <tr className="table_evento">
+                <th>Título</th>
+                <th>Data Evento</th>
+                <th>Tipo Evento</th>
+                <th>Descricao</th>
+                <th>Comentários</th>
+                <th>Participar</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section >
+            </thead>
+            <tbody>
+              {filtrarEventos().map((item) => (
+                <tr key={item.idEvento} className="item_evento">
+                  <td data-cell="Nome">{item.nomeEvento}</td>
+                  <td data-cell="Data">
+                    {item.dataEvento ? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR }) : ""}
+                  </td>
+                  <td data-cell="TipoEvento">{item.tiposEvento.tituloTipoEvento}</td>
+                  <td data-cell="evento">
+                    <button onClick={() => descricaoEvento(item)}>
+                      <img src={Descricao} alt="Ícone editar" />
+                    </button>
+                  </td>
+                  <td data-cell="Editar">
+                    <button onClick={() => comentarEvento(item)}>
+                      <img src={Comentar} alt="Comentar" />
+                    </button>
+                  </td>
+                  <td data-cell="Participar"><Checkin/>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section >
       <Footer />
     </>
   );

@@ -63,9 +63,9 @@ const Login = () => {
 
                     if (tokenDecodificado.tipoUsuario === "alunos") {
                         //redirecionar a tela aluno(branco)
-                        naviGate("/ListaEventos")
+                        naviGate("/TipoUsuario")
                     } else {
-                        naviGate("/ListaEventos")
+                        naviGate("/CadastroEvento")
                     }
                 } else {
                     alertar("error", "Preencha os campos !")

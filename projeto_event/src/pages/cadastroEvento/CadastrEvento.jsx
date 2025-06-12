@@ -248,7 +248,7 @@ const CadastroEvento = () => {
                     lista={listaEvento}
                     tipoLista="Eventos"
                     tituloDoEvento="Nome"
-                    tituloDescricao="Descricao"
+                    tituloDescricao="Descrição"
                     dataEvento={dateEvento}
                     funcDeletar={deletarEvento}
                     descricao={descricaoEvento}

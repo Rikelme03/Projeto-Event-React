@@ -9,10 +9,13 @@
     margin-bottom: 60px;
     color: #201849;
     display: flex;
+    
 }
 
 .listagem_evento{
     height: 100%;
+
+    
 
     display: flex;
     flex-direction: column;
@@ -44,9 +47,9 @@
 .tabela_evento {
     width: 80%;
     margin-top: 40px;
-
+    
     text-align: center;
-    border-bottom: 1px solid #201849;
+    /* border-bottom: 1px solid #201849; */
 
     margin-left: -60px;
     
@@ -88,6 +91,7 @@
     padding: 30px 5px 30px;
     border-bottom: #201849 1px solid;
     
+    
 }
 
 .tabela_evento .item_evento :nth-child(2){
@@ -98,3 +102,5 @@ tbody button{
     background-color: transparent;
     border: 0px;
 }
+
+
