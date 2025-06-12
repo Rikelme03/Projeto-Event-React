@@ -165,7 +165,7 @@ const TipoEvento = () => {
                     imagem={Banner}
                     funcCadastro={cadastrarTipoEvento}
                     ValorInput={tipoEvento}
-                    setValorInput={setTipoEvento}
+                    setValorInputTitulo={setTipoEvento}
 
                 />
                 <Lista
@@ -175,12 +175,13 @@ const TipoEvento = () => {
                     visibol="none"
                     tituloDoEvento="Titulo"
                     visiDataEvento="none"
-                    visiTipoEvento="none"
+                    
                     visiBotaoDescricao="none"
                     visiTituloDescricao="none"
                     lista={listaTiposEventos}
                     funcDeletar={deletarTipoEvento}
                     funcEditar={editarTipoEvento}
+                    
                 />
 
             </main>

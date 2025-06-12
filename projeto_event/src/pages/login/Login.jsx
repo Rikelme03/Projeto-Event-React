@@ -6,14 +6,18 @@ import api from "../../Services/services";
 import { useState } from "react";
 import Swal from 'sweetalert2';
 import { userDecodeToken } from "../../auth/Auth"
-import  secureLocalStorage  from  "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Login = () => {
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
+
     const naviGate = useNavigate();
+
+    const { setUsuario } = useAuth();
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -53,18 +57,20 @@ const Login = () => {
                     const tokenDecodificado = userDecodeToken(token)
                     // console.log(tokenDecodificado);
                     // console.log(tokenDecodificado.tipoUsuario);
-                    secureLocalStorage.setItem("tokenLogin",JSON.stringify(tokenDecodificado));
+                    setUsuario(tokenDecodificado);
+                    
+                    secureLocalStorage.setItem("tokenLogin", JSON.stringify(tokenDecodificado));
 
-                    if (tokenDecodificado.tipoUsuario === "alunos") {              
+                    if (tokenDecodificado.tipoUsuario === "alunos") {
                         //redirecionar a tela aluno(branco)
-                        naviGate("/home")
+                        naviGate("/ListaEventos")
                     } else {
                         naviGate("/ListaEventos")
                     }
-                    } else {
-                alertar("error", "Preencha os campos !")
+                } else {
+                    alertar("error", "Preencha os campos !")
+                }
             }
-    }
 
         } catch (error) {
             console.log(error);

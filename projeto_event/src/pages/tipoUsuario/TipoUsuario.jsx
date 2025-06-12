@@ -177,6 +177,7 @@ async function editarTiposUsuarios(tipoUsuario){
             lista={listaTipoUsuario}
             funcDeletar={deletarTiposUsuarios}
             funcEditar = {editarTiposUsuarios}
+            arrumandoImgLista="none"
             />
             
         </main>

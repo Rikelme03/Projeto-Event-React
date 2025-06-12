@@ -1,84 +1,84 @@
-import "./Home.css";
-import { Link } from "react-router-dom"
-import Logo from "../../assets/logoEvent.svg"
-import TelaFundo from "../../assets/TelaFundoHome.png"
-import TelaFundoVisao from "../../assets/TelaHomeVisao.png"
-import Footer from "../../components/footer/Footer";
+import "./Home.css"
+import Footer from "../../components/footer/Footer"
+import Header from "../../components/header/Header"
+import { Link } from 'react-router-dom'
+import Mapa from "../../assets/Mapa.svg"
+import BannerHome from "../../assets/TelaFundoHome.png"
 
 const Home = () => {
-    return (
+  return (   
         <>
-        <header>
-            <div className="layout_grid cabecalho">
-                <img src={Logo} alt="Logo Evento" />
-                <nav className="nav_header">
-                     <Link className="link_header" to="/Home" href="">Home</Link>
-                     <Link className="link_header" to="/ListaEventos" href="">Eventos</Link>
-                     <Link className="link_header" to="/TipoEvento" href="">Usuários</Link>
-                     <Link className="link_header" to="/" href="">Contatos</Link>
-                </nav>
-                <div className="Adm">
-                    <button>Jogar</button>
+            <Header
+                Usuario = "none"
+                naver="none"
+            />
+            <main>
+                <div className="banner-div-home">
+                    <img src={BannerHome} alt="Area de eventos da escola de informatica" />
                 </div>
 
-            </div>
-        </header>
+                <div className="cards-home">
 
-        <main>
-            <div className="organizandoHomeFundo">
-            <img src={TelaFundo} alt="" />
-            </div>
+                    <h2>Próximos Eventos</h2>
+                    <hr />
 
-            <section className="orgProximosEventos">
-                <div className="tituloHome">
-                <h1>PRÓXIMOS EVENTOS</h1>
-                <hr />
-                </div>
+                    <div className="card-pai">
 
-                <div className="orgArticles layout_grid">
+                        <div className="cardzinho">
+                            <h2>Lorem</h2>
+                            <p>Lorem ipsum dolor sit amet consecteturcorrupti tempora! Delectus fugia</p>
+                            <Link className="link-card" to="/Login">Conectar</Link>
+                        </div>
 
-                    <article className="orgDentroDoArticle">
-                        <h3>Titulo do Evento</h3>
+                        <div className="cardzinho">
+                            <h2>Lorem</h2>
+                            <p>Lorem ipsum dolor sit amet consecteturcorrupti tempora! Delectus fugia</p>
+                            <Link className="link-card" to="/Login">Conectar</Link>
+                        </div>
 
-                        <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
+                        <div className="cardzinho">
+                            <h2>Lorem</h2>
+                            <p>Lorem ipsum dolor sit amet consecteturcorrupti tempora! Delectus fugia</p>
+                            <Link className="link-card" to="/Login">Conectar</Link>
+                        </div>
 
-                        <a href="">Conectar</a>
-                    </article>
+                        <div className="cardzinho">
+                            <h2>Lorem</h2>
+                            <p>Lorem ipsum dolor sit amet consecteturcorrupti tempora! Delectus fugia</p>
+                            <Link className="link-card" to="/Login">Conectar</Link>
+                        </div>
 
-                    <article className="orgDentroDoArticle">
-                        <h3>Titulo do Evento</h3>
-
-                        <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
-
-                        <a href="">Conectar</a>
-                    </article>
-
-                    <article className="orgDentroDoArticle">
-                        <h3>Titulo do Evento</h3>
-
-                        <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
-
-                        <a href="">Conectar</a>
-                    </article>
-
-                    <article className="orgDentroDoArticle ">
-                        <h3>Titulo do Evento</h3>
-
-                        <p>Breve descrição do evento, pode ser um paragrafo pequeno</p>
-
-                        <a href="">Conectar</a>
-                    </article>
-
+                    </div> 
 
                 </div>
-                <div className="orgBannerVisao">
-                    <img src={TelaFundoVisao} alt="" />
+
+                <div className="segundo_banner">
                 </div>
-            </section>
-        </main>
-        
-        
+
+                <div className="pre-footer">
+
+                    <h2>Contato</h2>
+                    <hr />
+
+                    <div className="pai-pre-footer">
+
+                        <div className="mapa">
+                            <img src={Mapa} alt="" />
+                        </div>
+
+                        <div className="informacoes">
+                            <p>Rua Niterói, 180 - Centro</p>
+                            <p>São Caetano  do  Sul - SP</p>
+                            <p>(11) 4225-2000</p>
+                        </div>
+                       
+                    </div>
+                </div>
+            </main>
+
+            <Footer />
         </>
     )
 }
+
 export default Home;

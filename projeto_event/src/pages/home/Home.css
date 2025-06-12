@@ -1,114 +1,117 @@
-header{
-    background-color: white;
-
-    height: 75px;
-
-    box-shadow: 1px 4px 4px 0px #0000008f;
-    position: relative;
-}
-
-.cabecalho{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.banner-div-home img {
+    /*Classe do Banner*/
     width: 100%;
 }
 
-.cabecalho img{
-    height: 25px;
-}
-
-.link_header{
-    margin-left: 45px;
-
-    color: black;
-
-    text-decoration: none;
-}
-
-.Adm img{
-    width: 15px;
-    height: 13px;
-    margin-left: 10px;
-}
-
-.cabecalho button{
-    height: 35px;
-    width: 80px;
-    background-color: #B51D44;
-    color: aliceblue;
-    border-radius: 8px;
-    border: 0px;
-}
-
-.orgProximosEventos{
-    height: 400px;
-}
-
-.organizandoHomeFundo img{
+.cards-home hr {
+    max-width: 200px;
     width: 100%;
-    height: 650px;
+    margin-top: 7px;
+    margin-bottom: 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #B51D44;
 }
 
- .tituloHome{
-    margin-top: 50px;
+.cards-home {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
 }
 
-.tituloHome hr{
-    background-color: red;
-    height: 4px;
-    border-radius: 10px;
-    width: 300px;
-}
-
-.orgArticles {
+.card-pai {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-.orgArticles  article{
-    border-radius: 5px;
-    margin-top: 50px;
-    height: 250px;
-    width: 220px;
-    border: 2px solid #86224D;
-}
-
-.orgDentroDoArticle{
+.cardzinho {
+    font: "poppins";
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
     text-align: center;
-    padding: 30px;
+    height: 250px;
+    width: 225px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 2px solid #821B47;
+    font-size: small;
+    border-radius: 5px;
 }
 
-.orgDentroDoArticle a{
+.link-card {
     color: #B51D44;
-    text-decoration:none;
-
+    text-decoration: none;
+    font-size: medium;
 }
 
-.orgBannerVisao img{
-    height: 380px;
+/* .segundo-banner img{
+    margin-top: 60px;
     width: 100%;
+} */
+
+.segundo_banner {
+    background-image: url("../../assets/TelaHomeVisao.png");
+    width: 100%;
+    height: 350px;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px
 }
 
-@media screen and (max-width: 768px) {
-    
-    .cabecalho{
-        justify-content: center;
-        align-items: center;
-    }
-    .link_header{
-        display: none;
-    }
-    .Adm{
-        display: none;
-    }
+.segundo_banner h2 {
+    margin-top: 20px;
+
+}
+
+.segundo-p {
+    width: 800px;
+    font-size: small;
+}
+
+.pre-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #00000055;
+}
+
+.pre-footer h2 {
+    margin-top: 20px;
+}
+
+.pre-footer hr {
+    max-width: 200px;
+    width: 100%;
+    margin-top: 7px;
+    margin-bottom: 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #B51D44;
+}
+
+.pai-pre-footer {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.mapa {
+    margin-right: 20px;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 20px;
+}
+
+.fim {
+    width: 100%;
+    border-bottom: solid 2px #00000055;
 }

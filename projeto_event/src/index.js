@@ -4,13 +4,14 @@ import './index.css';
 import App from './App';
 // import Rotas from "../src/routes/routes"
 import ListagemEvento from "../src/pages/listagemEvento/ListagemEvento"
+import { AuthProvider } from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <>
+  // <React.StrictMode>
+    <AuthProvider>
       <App/>
-    </>
-  </React.StrictMode>
+    </AuthProvider>
+  // </React.StrictMode>
 );
 

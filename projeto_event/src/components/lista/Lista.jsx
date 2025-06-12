@@ -21,11 +21,11 @@ const Lista = (props) => {
 
                             <th>{props.tituloDoEvento}</th>
                             <th style={{ display: props.visiDataEvento }}>Data Evento</th>
-                            <th >{props.visiTipoEvento}</th>
+                            <th style={{ display: props.visiTipoEvento }}> Tipo Evento</th>
                             <th style={{ display: props.titulo }}></th><th>Editar</th>
                             <th>Excluir</th>
                             <th>{props.tituloDescricao}</th>
-                        </tr>
+                        </tr> 
                     </thead>
 
                     <tbody>
@@ -44,6 +44,7 @@ const Lista = (props) => {
                                     <td data-cell="Tipo Evento" style={{ display: props.visill }}>
                                         {item.tiposEvento?.tituloTipoEvento}
                                     </td>
+                                    <td style={{ display: props.arrumandoImg }}></td>
                                     <td data-cell="Editar">
                                         <button onClick={() => { props.funcEditar(item) }}>
                                             <img src={Editar} alt="Ícone editar" />
