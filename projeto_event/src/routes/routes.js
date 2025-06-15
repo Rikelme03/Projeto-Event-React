@@ -6,6 +6,7 @@ import ListaEventos from "../pages/listagemEvento/ListagemEvento"
 import CadastrarEvento from "../pages/cadastroEvento/CadastrEvento"
 import Home from "../pages/home/Home"
 import { useAuth } from '../contexts/AuthContext';
+import CadastroUsuario from '../pages/cadastroUsuario/CadastroUsuario';
 
 
 const Privado = (props) => {
@@ -32,15 +33,19 @@ const Rotas = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<CadastroUsuario />} />
                 
-                <Route path="/Home" element={<Privado item={Home} tipoPermitido={["Admin", "alunos"]}/>} />
+                <Route path="/Login" element={<Login />} />
+                
+                <Route path="/Home" element={ <Privado item={Home} tipoPermitido="alunos" />} />
+                    
+                <Route path="/CadastroUsuario" element={CadastroUsuario} />
 
                 <Route path="/TipoEvento" element={ <Privado item={TipoEvento} tipoPermitido="Admin" />} />
 
                 <Route path="/TipoUsuario" element={<Privado item={TipoUsuario} tipoPermitido="Admin" />} />
 
-                <Route path="/ListaEventos" element={<Privado item={ListaEventos} tipoPermitido={["Admin", "alunos"]} />} />
+                <Route path="/ListaEventos" element={<Privado item={ListaEventos} tipoPermitido="alunos" />} />
 
                 <Route path="/CadastroEvento" element={<Privado item={CadastrarEvento} tipoPermitido="Admin" />} />
             </Routes>

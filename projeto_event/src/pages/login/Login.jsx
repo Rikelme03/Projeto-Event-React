@@ -9,6 +9,7 @@ import { userDecodeToken } from "../../auth/Auth"
 import secureLocalStorage from "react-secure-storage";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../contexts/AuthContext";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -102,7 +103,9 @@ const Login = () => {
                                 value={senha} onChange={(e) => setSenha(e.target.value)} />
                         </div>
                     </div>
-                    <a href="">Esqueceu a senha?</a>
+                    
+                    <Link to="/CadastroUsuario" className="cadastro_usu">Cadastre-se</Link>
+                    <a href="">Esqueceu a senha?</a> 
                     <Botao nomeDoBotao="Login" />
                 </form>
 
