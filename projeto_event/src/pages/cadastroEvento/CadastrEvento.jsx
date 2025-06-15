@@ -42,11 +42,6 @@ const CadastroEvento = () => {
 
     async function cadastrarEvento(evt) {
         evt.preventDefault();
-        console.log(evento);
-        console.log(tipoEvento);
-        console.log(dateEvento);
-        console.log(descricao);
-        console.log(instituicao);
         
         if (evento.trim() != "") {
             try {
@@ -54,12 +49,17 @@ const CadastroEvento = () => {
                     { nomeEvento: evento, idTipoEvento: tipoEvento, 
                         dataEvento: dateEvento, descricao: descricao, 
                         idInstituicao: instituicao });
-                alertar("success", "Cadastro realizado com sucesso!");
-                setEvento("");
-                setDateEvento();
-                setDescricao("");
-                setTipoEvento("");
-                listarEventos();
+                        alertar("success", "Cadastro realizado com sucesso!");
+                        setEvento("");
+                        setDateEvento();
+                        setDescricao("");
+                        setTipoEvento("");
+                        listarEventos();
+                        console.log(evento);
+                        console.log(tipoEvento);
+                        console.log(dateEvento);
+                        console.log(descricao);
+                        console.log(instituicao);
             } catch (error) {
                 alertar("error", "Entre em contato com o suporte")
                 console.log(error);
@@ -244,11 +244,10 @@ const CadastroEvento = () => {
                     setValorInputDescricao={setDescricao}
                 />
                 <Lista
-                    tituloPagina="LISTA DE EVENTOS"
-                    lista={listaEvento}
-                    tipoLista="Eventos"
-                    tituloDoEvento="Nome"
-                    tituloDescricao="Descrição"
+                    tituloLista="Lista de Eventos"
+                    nomezin="Nome"
+                    edit="Editar"
+                    tipoLista="evento"
                     dataEvento={dateEvento}
                     funcDeletar={deletarEvento}
                     descricao={descricaoEvento}

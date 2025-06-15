@@ -11,6 +11,7 @@ const Home = () => {
             <Header
                 Usuario = "none"
                 naver="none"
+                
             />
             <main>
                 <div className="banner-div-home">

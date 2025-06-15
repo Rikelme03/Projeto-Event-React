@@ -59,7 +59,7 @@ const Cadastro = (props) => {
                             onChange={(e) => props.setValorSelectInstituicao(e.target.value)}
                             >
  
-                            <option value="">Senai</option>
+                            <option value="6105C2CA-89F2-4A23-B07D-22485E9D5F1A">Senai</option>
                             </select>
                             
                         </div>

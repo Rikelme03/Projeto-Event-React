@@ -96,8 +96,14 @@ const TipoEvento = () => {
 
     useEffect(() => {
         listarTiposEventos();
-
+        
     }, [listaTiposEventos]);
+
+    useEffect(() => {
+        // listarTipoEvento();
+        listarTiposEventos();
+    }, []);
+
 
     async function deletarTipoEvento(id) {
         try {
@@ -169,15 +175,11 @@ const TipoEvento = () => {
 
                 />
                 <Lista
-                    tituloPagina="LISTA TIPO DE EVENTOS"
-                    visibilidade="none"
-                    visi="none"
-                    visibol="none"
-                    tituloDoEvento="Titulo"
-                    visiDataEvento="none"
-                    
-                    visiBotaoDescricao="none"
-                    visiTituloDescricao="none"
+                    tituloLista="Lista de Tipos Eventos"
+                    nomezin="Tipo Eventos"
+                    visible="none"
+                    edit="Editar"
+                    tipoLista="tipoEvento"
                     lista={listaTiposEventos}
                     funcDeletar={deletarTipoEvento}
                     funcEditar={editarTipoEvento}

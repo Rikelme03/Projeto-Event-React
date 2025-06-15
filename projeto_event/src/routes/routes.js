@@ -7,6 +7,7 @@ import CadastrarEvento from "../pages/cadastroEvento/CadastrEvento"
 import Home from "../pages/home/Home"
 import { useAuth } from '../contexts/AuthContext';
 
+
 const Privado = (props) => {
     const { usuario } = useAuth();
     //token, idUsuario, tipoUsuario
@@ -33,13 +34,13 @@ const Rotas = () => {
             <Routes>
                 <Route path="/" element={<Login />} />
                 
-                <Route path="/Home" element={<Privado item={Home} tipoPermitido="alunos" />} />
+                <Route path="/Home" element={<Privado item={Home} tipoPermitido={["Admin", "alunos"]}/>} />
 
                 <Route path="/TipoEvento" element={ <Privado item={TipoEvento} tipoPermitido="Admin" />} />
 
-                <Route path="/TipoUsuario" element={<Privado item={TipoUsuario} tipoPermitido="alunos" />} />
+                <Route path="/TipoUsuario" element={<Privado item={TipoUsuario} tipoPermitido="Admin" />} />
 
-                <Route path="/ListaEventos" element={<Privado item={ListaEventos} tipoPermitido="Admin" />} />
+                <Route path="/ListaEventos" element={<Privado item={ListaEventos} tipoPermitido={["Admin", "alunos"]} />} />
 
                 <Route path="/CadastroEvento" element={<Privado item={CadastrarEvento} tipoPermitido="Admin" />} />
             </Routes>

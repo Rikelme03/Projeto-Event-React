@@ -63,7 +63,7 @@ const Login = () => {
 
                     if (tokenDecodificado.tipoUsuario === "alunos") {
                         //redirecionar a tela aluno(branco)
-                        naviGate("/TipoUsuario")
+                        naviGate("/Home")
                     } else {
                         naviGate("/CadastroEvento")
                     }

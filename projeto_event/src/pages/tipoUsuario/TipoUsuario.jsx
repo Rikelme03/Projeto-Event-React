@@ -90,10 +90,19 @@ const TipoUsuario = () => {
         }
 
 
-        useEffect(() => {
+            useEffect(() => {
         listarTiposUsuarios();
         
     }, [listaTipoUsuario]);
+
+    useEffect(() => {
+        // listarTipoEvento();
+        listarTiposUsuarios();
+    }, []);
+
+
+    //Esse useEffect esta repetindo varias vezes no terminal da api
+    
 
     async function deletarTiposUsuarios(id) {
     try {
@@ -166,18 +175,15 @@ async function editarTiposUsuarios(tipoUsuario){
                 setValorInputTitulo={setTipoUsuario}
             />
             <Lista
-            tituloPagina="LISTA TIPO DE USUÁRIO"
-            tituloDoEvento="Titulo"
-            visiDataEvento="none"
-            visiTipoEvento="none"
-            visiBotaoDescricao="none"
-            visibol="none"
-            visiTituloDescricao="none"
-            visi="none"
+            tituloLista="Lista de Tipos Usuarios"
+            nomezin="Tipo Usuarios"
+            visible="none"
+            edit="Editar"
             lista={listaTipoUsuario}
             funcDeletar={deletarTiposUsuarios}
             funcEditar = {editarTiposUsuarios}
-            arrumandoImgLista="none"
+            
+            
             />
             
         </main>
