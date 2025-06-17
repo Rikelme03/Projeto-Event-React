@@ -16,15 +16,9 @@ const ListagemEvento = () => {
   const [listaEventos, setListaEventos] = useState([]);
   const [valorSelectEventos, setvalorSelectEventos] = useState("");
 
-  //Modal
-  const [tipoModal, setTipoModal] = useState({});//descricao Evento ou Comentario
-  const [dadosModal, setDadosModal] = useState({});//descricao do modal
-  const [modalAberto, setModalAberto] = useState(false)
-
   //Filtro
   const [filtroData, setFiltroData] = useState(["todos"]);
   const { usuario } = useAuth();
-  // const [usuarioId, setUsuarioId] = useState("4E09F7E2-2273-472C-AFA9-DA857CECB321")
 
   function alertar(icone, mensagem) {
     const Toast = Swal.mixin({
@@ -44,8 +38,6 @@ const ListagemEvento = () => {
     });
   }
 
-
-
   async function listarEventos() {
     try {
       //pego o eventos em geral
@@ -60,6 +52,7 @@ const ListagemEvento = () => {
           ...atualEvento,
 
           possuiPresenca: presenca?.situacao === true,
+          idPresenca: presenca?.idPresencaEvento || null
         }
       })
 
@@ -71,29 +64,29 @@ const ListagemEvento = () => {
     }
   }
 
-  async function manipularPresenca(idEvento, presenca, idPresenca) {
-    try {
-      if (presenca && idPresenca) {
-        await api.put(`PresencasEventos/${idPresenca}`, { situacao: false });
-        Swal.fire("Removido", "Sua presença foi cancelada.", "info");
-      } else if (!presenca && idPresenca) {
-        await api.put(`PresencasEventos/${idPresenca}`, { situacao: true });
-        Swal.fire("Confirmado", "Sua presença foi confirmada.", "success");
-      } else {
-        await api.post("PresencasEventos", {
-          situacao: true,
-          idUsuario: usuario.idUsuario,
-          idEvento: idEvento,
-        });
-        Swal.fire("Confirmado", "Sua presença foi confirmada.", "success");
-      }
+  // async function manipularPresenca(idEvento, presenca, idPresenca) {
+  //   try {
+  //     if (presenca && idPresenca) {
+  //       await api.put(`PresencasEventos/${idPresenca}`, { situacao: false });
+  //       Swal.fire("Removido", "Sua presença foi cancelada.", "info");
+  //     } else if (!presenca && idPresenca) {
+  //       await api.put(`PresencasEventos/${idPresenca}`, { situacao: true });
+  //       Swal.fire("Confirmado", "Sua presença foi confirmada.", "success");
+  //     } else {
+  //       await api.post("PresencasEventos", {
+  //         situacao: true,
+  //         idUsuario: usuario.idUsuario,
+  //         idEvento: idEvento,
+  //       });
+  //       Swal.fire("Confirmado", "Sua presença foi confirmada.", "success");
+  //     }
 
-      listarEventos();
-    } catch (error) {
-      console.error("Erro ao manipular presença:", error);
-      Swal.fire("Erro", "Não foi possível atualizar sua presença.", "error");
-    }
-  }
+  //     listarEventos();
+  //   } catch (error) {
+  //     console.error("Erro ao manipular presença:", error);
+  //     Swal.fire("Erro", "Não foi possível atualizar sua presença.", "error");
+  //   }
+  // }
 
   async function descricaoEvento(evento) {
     try {
@@ -119,32 +112,83 @@ const ListagemEvento = () => {
     }
   }
 
-
   useEffect(() => {
     listarEventos();
-
   }, [])
 
   async function comentarEvento(item) {
-     if (!item.comentarios || item.comentarios.length === 0) {
-    return Swal.fire({
-      icon: 'info',
-      title: 'Sem comentários',
-      text: `O evento "${item.nomeEvento}" ainda não possui comentários.`,
-    });
-  }
+  // Mostra comentários existentes ou mensagem de nenhum comentário
 
-  const listaHtml = item.comentarios.map((coment, i) => 
-    `<li style="margin-bottom: 10px;"><strong>Comentário ${i + 1}:</strong> ${coment}</li>`
-  ).join('');
+  
+  //aqui vc precisa pegar as informacoes de comentario!!
+  const listaHtml = (item.comentarios?.length > 0)
+    ? item.comentarios.map((c) => `<li><strong>${c.nomeEvento}:</strong> ${c}</li>`).join('')
+    : '<li>Sem comentários ainda.</li>';
 
-  await Swal.fire({
+  // Abre o SweetAlert para comentar
+  const { value: comentario } = await Swal.fire({
     title: `Comentários de "${item.nomeEvento}"`,
-    html: `<ul style="text-align: left; padding-left: 20px;">${listaHtml}</ul>`,
-    confirmButtonText: 'Fechar',
+    html: `
+      <ul style="text-align:left">${listaHtml}</ul>
+      <textarea id="coment" class="swal2-textarea" placeholder="Digite seu comentário..."></textarea>
+    `,
+    showCancelButton: true,
+    confirmButtonText: 'Enviar',
+    cancelButtonText: 'Cancelar',
+    preConfirm: () => {
+      const texto = document.getElementById('coment').value.trim();
+      if (!texto) {
+        Swal.showValidationMessage('Digite algo!');
+        return false;
+      }
+      return texto;
+    }
   });
+
+  // Envia comentário se preenchido
+  if (comentario) {
+    try {
+      await api.post('ComentariosEventos', {
+        descricao: comentario,
+        exibe: true,
+        idUsuario: usuario.idUsuario,
+        idEvento: item.idEvento
+      });
+
+      Swal.fire('Enviado!', 'Comentário cadastrado com sucesso.', 'success');
+    } catch (err) {
+      Swal.fire('Erro!', 'Não foi possível enviar o comentário.', 'error');
+    }
+  }
 }
 
+  async function manipularPresenca(idEvento, presenca, idPresencaEvento) {
+    try {
+
+      console.log(idPresencaEvento);
+      console.log(presenca);
+      
+      if (presenca && idPresencaEvento != null) {
+        console.log("aqui 01");
+        //atualizacao: situacao para FALSE
+        await api.put(`PresencasEventos/${idPresencaEvento}`, { situacao: false });
+        Swal.fire('Removido!', 'Sua presença foi removida.', 'success');
+      } else if (idPresencaEvento !== null) {
+        //atualizacao: situacao para TRUE
+        console.log("aqui 02");
+        await api.put(`PresencasEventos/${idPresencaEvento}`, { situacao: true });
+        Swal.fire('Confirmado!', 'Sua presença foi confirmada.', 'success');
+      } else {
+        console.log("aqui 03");
+        //cadastrar uma nova presenca
+        await api.post("PresencasEventos", { situacao: true, idUsuario: usuario.idUsuario, idEvento: idEvento });
+        Swal.fire('Confirmado!', 'Sua presença foi confirmada.', 'success');
+      }
+      listarEventos()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
 
@@ -162,13 +206,10 @@ const ListagemEvento = () => {
     });
   }
 
-
-
-
   return (
     <>
       <Header />
-      <section className="layout_grid listagem_evento">
+      <section className=" listagem_evento">
         <h1>Eventos</h1>
         <hr />
 
@@ -205,11 +246,16 @@ const ListagemEvento = () => {
                     </button>
                   </td>
                   <td data-cell="Editar">
-                    <button onClick={() => comentarEvento(item)}>
+                    <button onClick={() => comentarEvento(item, usuario.idUsuario)}>
                       <img src={Comentar} alt="Comentar" />
                     </button>
                   </td>
-                  <td data-cell="Participar"><Checkin/>
+                  <td data-cell="Participar" type="checkbox"
+                    checked={item.possuiPresenca}
+                    onChange={() =>
+                      manipularPresenca(item.idEvento, item.possuiPresenca, item.idPresenca)
+                    }>
+                    <Checkin />
                   </td>
                 </tr>
               ))}

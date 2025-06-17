@@ -1,4 +1,5 @@
 import React, { Children } from 'react'
+import secureLocalStorage from "react-secure-storage";
 
 //Importa funcoes do react para usar o Context
 import { createContext, useState, useContext } from 'react';
@@ -10,7 +11,11 @@ const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
 
     //Cria um estado para o a const usuario
-    const [usuario, setUsuario] = useState(null);
+    const [usuario, setUsuario] = useState(() => {
+        const usuarioSalvo = secureLocalStorage.getItem("tokenLogin");
+        return usuarioSalvo ? JSON.parse(usuarioSalvo) : undefined
+    });
+    
     return(
         
         //O AuthContext.Provider permite que qualquer 

@@ -46,21 +46,19 @@ const Lista = (props) => {
 
                                             <td data-cell={props.nomezin}>
                                                 {
-                                                    props.tipoLista === "tipoEvento"
+                                                    props.tipoLista === "tiposEventos"
                                                         ? item.tituloTipoEvento
                                                         : props.tipoLista === "evento"
                                                             ? item.nomeEvento
                                                             : item.tituloTipoUsuario ?? item.nome
                                                 }
-                                                {/*Nome dos Eventos / Nome dos Usuarios*/}
-                                                {/* {props.tipoLista == "evento" ? item.nomeEvento : item.nome} */}
-                                                {/* props.tipoLista == "tipoEvento" ? item.TituloTipoEvento : props.tipoLista == "TipoUsuario"?item.TituloTipoUsuario : props.tipoLista == "evento" ? item.NomeEvento */}
+                                                
 
                                             </td>
 
-                                            <td style={{ display: props.visible }} data-cell="Data">{item.dataEvento}</td>
+                                            <td style={{ display: props.visible }} data-cell="Data">{item.dataEvento ? format(new Date(item.dataEvento), "dd/MM/yyyy", { locale: ptBR }) : ""}</td>
 
-                                            <td style={{ display: props.visible }} data-cell="TipoEvento">{item.tipoEvento?.tituloTipoEvento}</td>
+                                            <td style={{ display: props.visible }} data-cell="TipoEvento">{item.tiposEvento?.tituloTipoEvento}</td>
 
                                             <td data-cell="Editar Ações">
                                                 <img src={Editar} alt="lapizin" onClick={() => props.funcEditar(item)} style={{ cursor: "pointer" }} />

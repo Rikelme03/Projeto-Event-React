@@ -3,9 +3,22 @@ import Logo from "../../assets/logoEvent.svg";
 import Logo_adm from "../../assets/Vector.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import secureLocalStorage from "react-secure-storage";
+
 
 const Header = () => {
     const { usuario } = useAuth();
+
+    function deslogar() {
+        try {
+        
+        secureLocalStorage.removeItem("tokenLogin");
+        <Link className="link_header" to="/Login"></Link>
+        } catch (error) {
+            
+        }
+        
+    }
 
     return (
         <header>
@@ -19,7 +32,7 @@ const Header = () => {
                     
                     {usuario?.tipoUsuario === "Admin" && (
                         <>
-                        <Link className="link_header" to="/TipoEvento">Usuários</Link>
+ 
                         <Link className="link_header" to="/CadastroEvento">Cadastro Eventos</Link>
                         <Link className="link_header" to="/TipoUsuario">Tipo Usuario</Link>
                         <Link className="link_header" to="/TipoEvento">Tipo Eventos</Link>
@@ -30,12 +43,12 @@ const Header = () => {
                 <div className="Adm">
                     {usuario ? (
                         <>
-                            <Link className="link_header" to="/">
+                            <Link className="link_header" to="/Login">
                                 {usuario.tipoUsuario === "Admin"
                                     ? `Admin`
                                     : `alunos`}
+                                    <img src={Logo_adm} alt="Ícone do usuário" onClick={() => deslogar()}/>
                             </Link>
-                            <img src={Logo_adm} alt="Ícone do usuário" />
                         </>
                     ) : (
                         <Link className="link_header" to="/login">Login</Link>

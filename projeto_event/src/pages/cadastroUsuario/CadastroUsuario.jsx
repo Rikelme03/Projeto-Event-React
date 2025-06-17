@@ -5,13 +5,14 @@ import api from "../../Services/services";
 import Swal from 'sweetalert2';
 import Logo from "../../assets/logo.png";
 import LogoEvent from "../../assets/logoEvent.svg";
-import { Link, useNavigate } from "react-router-dom"; // ⬅️ import useNavigate aqui
+import { Link, useNavigate } from "react-router-dom"; 
+import Botao from "../../components/botao/Botao";
 
 const CadastroUsuario = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [tipoUsuario, setTipoUsuario] = useState("d935ff8e-022e-42c3-8bed-f11b590f8acd");
+  const [tipoUsuario, setTipoUsuario] = useState("B9715542-585E-453A-8561-5133CEC01949");
 
   const navigate = useNavigate(); // ⬅️ Hook para redirecionar
 
@@ -43,13 +44,15 @@ const CadastroUsuario = () => {
           email: email,
           senha: senha,
           idTipoUsuario: tipoUsuario
-        });
 
+          
+        });
+        
         setNome("");
         setEmail("");
         setSenha("");
         setTipoUsuario("");
-
+        
         let timerInterval;
         Swal.fire({
           title: "Usuário cadastrado!",
@@ -71,8 +74,12 @@ const CadastroUsuario = () => {
             navigate("/Login");
           }
         });
-
+        
       } catch (error) {
+        console.log(nome);
+        console.log(email);
+        console.log(senha);
+        console.log(tipoUsuario);
         alertar("error", "Erro ao cadastrar. Contate o suporte.");
       }
 
@@ -105,9 +112,7 @@ const CadastroUsuario = () => {
           </div>
           <Link to="/login" className="cadastro_usu">Login</Link>
           <a href="" >Esqueceu a senha?</a>
-          <div className="botao_cadastro">
-            <button type="submit">Cadastra-se</button>
-          </div>
+          <Botao nomeDoBotao="Cadastro"/>
         </form>
       </section>
     </main>

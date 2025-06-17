@@ -104,7 +104,7 @@ const Login = () => {
                         </div>
                     </div>
                     
-                    <Link to="/CadastroUsuario" className="cadastro_usu">Cadastre-se</Link>
+                    <Link className="cadastro_usu" to="/" >Cadastrar-se</Link>
                     <a href="">Esqueceu a senha?</a> 
                     <Botao nomeDoBotao="Login" />
                 </form>
