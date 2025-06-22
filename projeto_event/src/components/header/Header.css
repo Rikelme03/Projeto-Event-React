@@ -1,49 +1,105 @@
-header{
-    background-color: white;
-
+body {
+    font-family: "Poppins", sans-serif;
+  }
+  
+  header {
     height: 75px;
+    box-shadow: 1px 4px 4px 0px #00000030;
+    background-color: black;
+  }
+  
+  .header_header {
+    padding: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .link_header {
+    margin-left: 65px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: white;
+    font-family: "poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .navs_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+    .header_header img {
+    height: 30px;
+  }
 
-    box-shadow: 1px 4px 4px 0px #0000008f;
-    position: relative;
-}
-
-.cabecalho{
+  .adm_info {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
+    gap: 8px;
+  }
+  
+  .adm_info img {
+    height: 19px;
+    width: 19px;
+    object-fit: cover;
+  }
 
-.cabecalho img{
-    height: 25px;
-}
 
 
 
-.link_header{
-    margin-left: 45px;
+  /********** botao login ************/
 
-    color: black;
+  .botao_login button{
+    border: none;
+    background-color: #2F2E41;
+    color: white;
+    width: 120px;    
+    height: 40px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif; 
+  }
+  
+  @media screen and (max-width: 768px) {
+    .login_img,
+    .nav_header {
+      display: none;
+    }
+  
+    .navas_header {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  
 
-    text-decoration: none;
-}
 
-.Adm img{
-    width: 15px;
-    height: 13px;
-    margin-left: 10px;
-}
+    .adm_info .link_header {
+      display: block;
+      font-size: 14px;
+      text-align: center;
+      color: #1f1848;
+      text-decoration: none;
+    }
+  
+    .header_header {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 
-@media screen and (max-width: 768px) {
+  .link_header img{
+    height: 17px;
+  }
+
+  .Adm p{
+    color: #2ACDCD;
     
-    .cabecalho{
-        justify-content: center;
-        align-items: center;
-    }
-    .link_header{
-        display: none;
-    }
-    .Adm{
-        display: none;
-    }
-}
+    font-size: 17px;
+  }
+  
+  

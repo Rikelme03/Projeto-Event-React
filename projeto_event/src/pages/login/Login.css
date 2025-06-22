@@ -1,82 +1,103 @@
-.main_login {
-    display: flex;
-    justify-content: center;
-    background-color: #B51D44;
-    height: 100vh;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+body, html, #root {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main_login {
+    display: flex;
+    height: 100vh;
+    background-color: #1C1C1E;
+}
+
+/* Lado esquerdo (ilustração/logo) */
 .logoBanner {
     flex: 1;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-color: #2F2E41;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .logoBanner img {
     width: 340px;
-    height: 245px;
+    height: auto;
 }
 
+/* Lado direito (formulário de login) */
 .section_login {
-    display: flex;
     flex: 1;
-    background-color: #FFFFFF;
+    background-color: #111;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    color: white;
+    padding: 40px;
 }
 
-
-.form_login {
-    color: white;
-    /* vai deixar o titulo com letra maiuscula */
-    width: 100;
-    height: 50%;
+.form_cadastro {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 80px;
+    height: 60%;
+    max-width: 320px;
+}
 
-
+.form_cadastro img {
+    width: 150px;
+    margin-bottom: 40px;
 }
 
 .campos_login {
     width: 100%;
-    margin-top: 50px;
 }
 
 .campo_input {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
-
+    margin-bottom: 25px;
 }
 
 .campo_input input {
     width: 100%;
-    padding: 10px 5px;
+    padding: 10px 8px;
     border: none;
-    border-bottom: 2px solid black;
-    outline: none;
+    border-bottom: 2px solid #00F7FF;
+    background: transparent;
+    color: white;
     font-size: 16px;
+    outline: none;
 }
 
-.section_login a {
+.campo_input input::placeholder {
+    color: #aaa;
+}
+
+a {
     color: #A6A0A0;
     text-decoration: none;
-    padding: 16px 20px ;
     font-size: 13px;
+    margin: 6px 0;
 }
 
-@media screen and (max-width:768px) {
+.cadastro_usu {
+    align-self: flex-start;
+}
+
+@media screen and (max-width: 768px) {
     .logoBanner {
         display: none;
+    }
 
+    .main_login {
+        flex-direction: column;
     }
 }

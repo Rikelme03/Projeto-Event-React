@@ -8,13 +8,15 @@ import { useEffect, useState } from "react";
 import Descricao from "../../assets/Descricao Preta.png";
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import Modal from "../../components/modal/Modal";
 import { useAuth } from "../../contexts/AuthContext";
 import Checkin from "../../components/checkin/Checkin";
+import withReactContent from 'sweetalert2-react-content';
 
 const ListagemEvento = () => {
   const [listaEventos, setListaEventos] = useState([]);
   const [valorSelectEventos, setvalorSelectEventos] = useState("");
+  const [ comentarios, setComentarios] = useState([]);
+  const MySwal = withReactContent(Swal);
 
   //Filtro
   const [filtroData, setFiltroData] = useState(["todos"]);
@@ -64,29 +66,6 @@ const ListagemEvento = () => {
     }
   }
 
-  // async function manipularPresenca(idEvento, presenca, idPresenca) {
-  //   try {
-  //     if (presenca && idPresenca) {
-  //       await api.put(`PresencasEventos/${idPresenca}`, { situacao: false });
-  //       Swal.fire("Removido", "Sua presença foi cancelada.", "info");
-  //     } else if (!presenca && idPresenca) {
-  //       await api.put(`PresencasEventos/${idPresenca}`, { situacao: true });
-  //       Swal.fire("Confirmado", "Sua presença foi confirmada.", "success");
-  //     } else {
-  //       await api.post("PresencasEventos", {
-  //         situacao: true,
-  //         idUsuario: usuario.idUsuario,
-  //         idEvento: idEvento,
-  //       });
-  //       Swal.fire("Confirmado", "Sua presença foi confirmada.", "success");
-  //     }
-
-  //     listarEventos();
-  //   } catch (error) {
-  //     console.error("Erro ao manipular presença:", error);
-  //     Swal.fire("Erro", "Não foi possível atualizar sua presença.", "error");
-  //   }
-  // }
 
   async function descricaoEvento(evento) {
     try {
@@ -116,49 +95,55 @@ const ListagemEvento = () => {
     listarEventos();
   }, [])
 
-  async function comentarEvento(item) {
-  // Mostra comentários existentes ou mensagem de nenhum comentário
+    async function listarECadastrarComentarios(idEvento, setComentarios) {
+  try {
+    
+    const resposta = await api.get(`ComentariosEventos/ListarSomenteExibe?id=${idEvento}`);
+    const comentarios = resposta.data;
 
-  
-  //aqui vc precisa pegar as informacoes de comentario!!
-  const listaHtml = (item.comentarios?.length > 0)
-    ? item.comentarios.map((c) => `<li><strong>${c.nomeEvento}:</strong> ${c}</li>`).join('')
-    : '<li>Sem comentários ainda.</li>';
+    // 2. Montar lista HTML
+    const listaHtml = comentarios.length > 0
+      ? `<ul style="text-align: left">${comentarios.map(c => `<li>${c.descricao}</li>`).join('')}</ul>`
+      : "<p>Sem comentários ainda.</p>";
 
-  // Abre o SweetAlert para comentar
-  const { value: comentario } = await Swal.fire({
-    title: `Comentários de "${item.nomeEvento}"`,
-    html: `
-      <ul style="text-align:left">${listaHtml}</ul>
-      <textarea id="coment" class="swal2-textarea" placeholder="Digite seu comentário..."></textarea>
-    `,
-    showCancelButton: true,
-    confirmButtonText: 'Enviar',
-    cancelButtonText: 'Cancelar',
-    preConfirm: () => {
-      const texto = document.getElementById('coment').value.trim();
-      if (!texto) {
-        Swal.showValidationMessage('Digite algo!');
-        return false;
-      }
-      return texto;
-    }
-  });
+    
+    const { value: descricao } = await MySwal.fire({
+      title: "Comentários do Evento",
+      html: `
+        <div style="margin-bottom: 10px;">
+          <strong>Lista:</strong>
+          ${listaHtml}
+        </div>
+        <textarea id="comentario-input" class="swal2-textarea" placeholder="Digite seu comentário aqui..."></textarea>
+      `,
+      showCancelButton: true,
+      confirmButtonText: "Enviar comentário",
+      preConfirm: () => {
+        const descricao = document.getElementById("comentario-input").value;
+        if (!descricao.trim()) {
+          Swal.showValidationMessage("O comentário não pode estar vazio.");
+        }
+        return descricao;
+      },
+    });
 
-  // Envia comentário se preenchido
-  if (comentario) {
-    try {
-      await api.post('ComentariosEventos', {
-        descricao: comentario,
-        exibe: true,
-        idUsuario: usuario.idUsuario,
-        idEvento: item.idEvento
+    
+    if (descricao) {
+      await api.post("ComentariosEventos", {
+        idEvento: idEvento,
+        descricao: descricao,
       });
 
-      Swal.fire('Enviado!', 'Comentário cadastrado com sucesso.', 'success');
-    } catch (err) {
-      Swal.fire('Erro!', 'Não foi possível enviar o comentário.', 'error');
+      Swal.fire("Sucesso!", "Comentário enviado com sucesso.", "success");
+
+      // Atualiza a lista depois de comentar
+      const novaResposta = await api.get(`ComentariosEventos/ListarSomenteExibe?id=${idEvento}`);
+      setComentarios(novaResposta.data);
     }
+  } catch (error) {
+    console.log(error);
+    console.log("ID do Evento:", idEvento);
+    Swal.fire("Erro", "Não foi possível carregar ou enviar comentários.", "error");
   }
 }
 
@@ -214,13 +199,14 @@ const ListagemEvento = () => {
         <hr />
 
         <div className="tabela_evento">
+          <div className="org_select_listagemEvento">
           <select className="select_evento"
             onChange={(e) => setFiltroData([e.target.value])}>
             <option value="todos" selected>Todos os eventos</option>
             <option value="futuros">Somente futuros</option>
             <option value="passados">Somente passados</option>
           </select>
-
+        </div>
           <table>
             <thead>
               <tr className="table_evento">
@@ -246,7 +232,7 @@ const ListagemEvento = () => {
                     </button>
                   </td>
                   <td data-cell="Editar">
-                    <button onClick={() => comentarEvento(item, usuario.idUsuario)}>
+                    <button onClick={() => listarECadastrarComentarios(item.idEvento, setComentarios)}>
                       <img src={Comentar} alt="Comentar" />
                     </button>
                   </td>

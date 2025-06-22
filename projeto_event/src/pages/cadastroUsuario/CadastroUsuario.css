@@ -1,83 +1,79 @@
-.main_login {
-    display: flex;
-    justify-content: center;
-    background-color: #B51D44;
-    height: 100vh;
+.tela_cadastro {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.logoBanner {
-    flex: 1;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+.lado {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.logoBanner img {
-    width: 340px;
-    height: 245px;
+.lado-esquerdo {
+  background-color: #1B1B2F;
 }
 
-.section_login {
-    display: flex;
-    flex: 1;
-    background-color: #FFFFFF;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+.lado-direito {
+  background-color: #EDEDED;
 }
 
-
-.form_login {
-    color: white;
-    /* vai deixar o titulo com letra maiuscula */
-    width: 100;
-    height: 50%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-
-
+.formulario_cadastro {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
-.campos_login {
-    width: 100%;
-    margin-top: 50px;
+.logo_event {
+  width: 130px;
+  margin-bottom: 30px;
 }
 
 .campo_input {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .campo_input input {
-    width: 100%;
-    padding: 10px 5px;
-    border: none;
-    border-bottom: 2px solid black;
-    outline: none;
-    font-size: 16px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-bottom: 2px solid #2ACDCD;
+  background-color: transparent;
+  font-size: 14px;
+  outline: none;
 }
 
-.section_login a {
-    color: #A6A0A0;
-    text-decoration: none;
-    padding: 16px 20px ;
-    font-size: 13px;
+.links_aux {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 20px;
 }
 
-@media screen and (max-width:768px) {
-    .logoBanner {
-        display: none;
-
-    }
+.links_aux a {
+  color: #666;
+  text-decoration: none;
 }
 
+@media screen and (max-width: 768px) {
+  .tela_cadastro {
+    flex-direction: column;
+  }
+
+  .lado-esquerdo {
+    display: none;
+  }
+
+  .formulario_cadastro {
+    box-shadow: none;
+  }
+}

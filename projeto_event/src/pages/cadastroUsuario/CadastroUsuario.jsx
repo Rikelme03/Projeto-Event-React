@@ -4,7 +4,7 @@ import { useState } from "react";
 import api from "../../Services/services";
 import Swal from 'sweetalert2';
 import Logo from "../../assets/logo.png";
-import LogoEvent from "../../assets/logoEvent.svg";
+import event from "../../assets/Event+.png"
 import { Link, useNavigate } from "react-router-dom"; 
 import Botao from "../../components/botao/Botao";
 
@@ -12,7 +12,7 @@ const CadastroUsuario = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [tipoUsuario, setTipoUsuario] = useState("B9715542-585E-453A-8561-5133CEC01949");
+  const [tipoUsuario, setTipoUsuario] = useState("f2dfc5e5-1853-4dbe-9aa5-7dce6851fc8f");
 
   const navigate = useNavigate(); // ⬅️ Hook para redirecionar
 
@@ -89,33 +89,38 @@ const CadastroUsuario = () => {
   }
 
   return (
-    <main className="main_login">
-      <div className="logoBanner">
-        <img src={Logo} alt="" />
+    <main className="tela_cadastro">
+  <div className="lado lado-esquerdo">
+    <img src={Logo} alt="Logo ilustrativa" />
+  </div>
+    <div className="cadastro_meio">
+    <form className="formulario_cadastro" onSubmit={cadastrarUsuarios}>
+      <img className="logo_event" src={event} alt="Logo Event+" />
+      
+      <div className="campos_login">
+        <div className="campo_input">
+          <input type="text" placeholder="Name" value={nome} onChange={(e) => setNome(e.target.value)} />
+        </div>
+        <div className="campo_input">
+          <input type="email" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+        <div className="campo_input">
+          <input type="password" placeholder="Password" value={senha} onChange={(e) => setSenha(e.target.value)} />
+        </div>
       </div>
-      <section className="section_login">
-        <form className="form_cadastro" onSubmit={cadastrarUsuarios}>
-          <img src={LogoEvent} alt="Logo do event+" />
-          <div className="campos_login">
-            <div className="campo_input">
-              <input type="text" name="Nome" placeholder="Name"
-                value={nome} onChange={(e) => setNome(e.target.value)} />
-            </div>
-            <div className="campo_input">
-              <input type="email" name="Email" placeholder="Username"
-                value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className="campo_input">
-              <input type="password" name="Senha" placeholder="Password"
-                value={senha} onChange={(e) => setSenha(e.target.value)} />
-            </div>
-          </div>
-          <Link to="/login" className="cadastro_usu">Login</Link>
-          <a href="" >Esqueceu a senha?</a>
-          <Botao nomeDoBotao="Cadastro"/>
-        </form>
-      </section>
-    </main>
+
+      <div className="links_aux">
+        <Link to="/login">Login</Link>
+        <a href="#">Esqueceu a senha?</a>
+      </div>
+
+      <Botao nomeDoBotao="Cadastre-se" />
+    </form>
+    </div>
+  <div className="lado lado-direito">
+    <img src={Logo} alt="Logo ilustrativa" />
+  </div>
+</main>
   );
 };
 

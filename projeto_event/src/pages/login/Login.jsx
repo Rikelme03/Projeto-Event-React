@@ -1,5 +1,5 @@
 import "./Login.css";
-import LogoEvent from "../../assets/logoEvent.svg"
+import event from "../../assets/Event+.png"
 import Logo from "../../assets/logo.png"
 import Botao from "../../components/botao/Botao";
 import api from "../../Services/services";
@@ -89,7 +89,7 @@ const Login = () => {
             <section className="section_login">
 
                 <form action="" className="form_cadastro" onSubmit={realizarAutenticacao}>
-                    <img src={LogoEvent} alt="Logo do event+" />
+                    <img src={event} alt="Logo do event+" />
 
                     <div className="campos_login">
 
@@ -104,7 +104,7 @@ const Login = () => {
                         </div>
                     </div>
                     
-                    <Link className="cadastro_usu" to="/" >Cadastrar-se</Link>
+                    <Link  to="/" >Cadastrar-se</Link>
                     <a href="">Esqueceu a senha?</a> 
                     <Botao nomeDoBotao="Login" />
                 </form>

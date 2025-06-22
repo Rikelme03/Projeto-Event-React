@@ -6,13 +6,13 @@ import Seta from "../../assets/seta.png"
 const Cadastro = (props) => {
     return (
 
-        <main className="layout_grid main_cadastro">
+        <main className=" main_cadastro">
             <div className="titulo">
                 <h1>{props.tituloCadastro}</h1>
                 <hr />
             </div>
 
-            <section className="section_cadastro">
+            <section className="section_cadastro layout_grid">
                 <div className="banner_cadastro">
                     <img src={props.imagem} alt="Fundo banner do cadastro eventos" />
                 </div>

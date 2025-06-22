@@ -1,8 +1,8 @@
 import "./Header.css";
-import Logo from "../../assets/logoEvent.svg";
 import Logo_adm from "../../assets/Vector.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import event from "../../assets/Event+.png"
 import secureLocalStorage from "react-secure-storage";
 
 
@@ -22,8 +22,8 @@ const Header = () => {
 
     return (
         <header>
-            <div className="layout_grid cabecalho">
-                <img src={Logo} alt="Logo Evento" />
+            <div className="layout_grid header_header">
+                <img src={event} alt="Logo Evento" />
 
                 <nav className="nav_header">
                     <Link className="link_header" to="/Home">Home</Link>
@@ -45,9 +45,8 @@ const Header = () => {
                         <>
                             <Link className="link_header" to="/Login">
                                 {usuario.tipoUsuario === "Admin"
-                                    ? `Admin`
-                                    : `alunos`}
-                                    <img src={Logo_adm} alt="Ícone do usuário" onClick={() => deslogar()}/>
+                                    ? <p>ADMIN <img src={Logo_adm} alt="Ícone do usuário" onClick={() => deslogar()}/></p>
+                                    : <p>Aluno <img src={Logo_adm} alt="Ícone do usuário" onClick={() => deslogar()}/></p>}
                             </Link>
                         </>
                     ) : (

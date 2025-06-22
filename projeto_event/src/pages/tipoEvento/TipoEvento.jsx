@@ -179,7 +179,7 @@ const TipoEvento = () => {
                     nomezin="Tipo Eventos"
                     visible="none"
                     edit="Editar"
-                    tipoLista="tipoEvento"
+                    tipoLista="tiposEventos"
                     lista={listaTiposEventos}
                     funcDeletar={deletarTipoEvento}
                     funcEditar={editarTipoEvento}

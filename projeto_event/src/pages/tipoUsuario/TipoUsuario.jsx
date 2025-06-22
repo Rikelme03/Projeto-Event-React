@@ -178,7 +178,7 @@ async function editarTiposUsuarios(tipoUsuario){
             tituloLista="Lista de Tipos Usuarios"
             nomezin="Tipo Usuarios"
             visible="none"
-            
+            tipoLista="tiposUsuarios"
             edit="Editar"
             lista={listaTipoUsuario}
             funcDeletar={deletarTiposUsuarios}
