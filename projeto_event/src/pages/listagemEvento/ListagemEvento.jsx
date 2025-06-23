@@ -18,7 +18,6 @@ const ListagemEvento = () => {
   const [ comentarios, setComentarios] = useState([]);
   const MySwal = withReactContent(Swal);
 
-  //Filtro
   const [filtroData, setFiltroData] = useState(["todos"]);
   const { usuario } = useAuth();
 
@@ -194,7 +193,7 @@ const ListagemEvento = () => {
   return (
     <>
       <Header />
-      <section className=" listagem_evento">
+      <section className="listagem_evento">
         <h1>Eventos</h1>
         <hr />
 

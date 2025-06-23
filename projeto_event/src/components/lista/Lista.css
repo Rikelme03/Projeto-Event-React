@@ -58,28 +58,13 @@
     border-bottom:1px solid #ffffff;
 }
 
-/* .tabela .table_cabecalho :first-child{
-    width:199px;
-}
-
-.tabela .table_cabecalho :nth-child(2){
-    width: 750px;
-    text-align: start;
-}
-.tabela .item_lista :nth-child(3){
-    width: 110px;
-}
-.tabela .item_lista :nth-child(2){
-    width: 550px;
-    text-align: start;
-} */
  .tabela .table_cabecalho {
     border-bottom: 1px solid #ffffff;
     width: 100px;
     margin-top: 40px;
  }
 .item_lista td {
-    padding: 20px 0 10px 0;
+    padding: 24px 0 17px 0;
     border-collapse: collapse;
     
 }

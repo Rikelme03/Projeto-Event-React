@@ -1,8 +1,8 @@
 .select_evento {
   background-color: transparent;
-  color: #2ACDCD; /* azul claro do texto */
+  color: #2ACDCD; 
   border: none;
-  border-bottom: 2px solid #2ACDCD; /* linha azul embaixo */
+  border-bottom: 2px solid #2ACDCD; 
   padding: 10px 40px 10px 10px;
   font-size: 18px;
   font-weight: 500;
@@ -35,7 +35,8 @@
 }
 
 .listagem_evento{
-    height: 100vh;
+   min-height: 100vh; 
+    height: auto;
 
     display: flex;
     flex-direction: column;
@@ -65,14 +66,10 @@
 }
 
 .tabela_evento {
-    width: 80%;
-    margin-top: 40px;
-    height: 100%;
-    text-align: center;
-    /* border-bottom: 1px solid #201849; */
-
-    margin-left: -60px;
-    
+  width: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+  min-height: 100%;
 }
 
 
@@ -131,4 +128,133 @@ tbody button{
     border: 0px;
 }
 
+@media screen and (max-width: 768px) {
+  .tabela_evento table, 
+  .tabela_evento thead, 
+  .tabela_evento tbody, 
+  .tabela_evento th, 
+  .tabela_evento td, 
+  .tabela_evento tr {
+    display: block;
+    width: 100%;
+  }
 
+  .tabela_evento thead {
+    display: none;
+  }
+
+  .item_evento {
+    margin-bottom: 20px;
+    background-color: #2F2E41;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #2ACDCD;
+    background-image: url("../../assets/bannerTipoUsuario.png");
+         
+    background-repeat: no-repeat; 
+    background-position: center;  
+  }
+
+  .item_evento td {
+    text-align: left;
+    padding: 10px 0;
+    border: none;
+    position: relative;
+  }
+
+  .item_evento td::before {
+    content: attr(data-cell);
+    font-weight: bold;
+    color: #2ACDCD;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .select_evento {
+    width: 80%;
+    font-size: 16px;
+    padding: 20px 0px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    
+  }
+
+  .org_select_listagemEvento {
+    padding: 0 10px;
+    justify-content: center;
+  }
+
+  .listagem_evento {
+    padding: 20px 10px;
+  }
+
+  .tabela_evento {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .tabela_evento table, 
+  .tabela_evento thead, 
+  .tabela_evento tbody, 
+  .tabela_evento th, 
+  .tabela_evento td, 
+  .tabela_evento tr {
+    display: block;
+    width: 100%;
+  }
+
+  .tabela_evento thead {
+    display: none;
+  }
+
+  .item_evento {
+    margin-bottom: 20px;
+    background-color: #2F2E41;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #2ACDCD;
+    background-image: url("../../assets/bannerTipoUsuario.png");
+    background-repeat: no-repeat; 
+    background-position: center;  
+  }
+
+  .item_evento td {
+    text-align: left;
+    padding: 10px 0;
+    border: none;
+    position: relative;
+  }
+
+  .item_evento td::before {
+    content: attr(data-cell);
+    font-weight: bold;
+    color: #2ACDCD;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .select_evento {
+    width: 80%;
+    font-size: 16px;
+    padding: 20px 0px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .org_select_listagemEvento {
+    padding: 0 10px;
+    justify-content: center;
+  }
+
+  .listagem_evento {
+    padding: 20px 10px;
+  }
+
+  .tabela_evento {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

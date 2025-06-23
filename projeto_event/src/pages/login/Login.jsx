@@ -1,5 +1,5 @@
 import "./Login.css";
-import event from "../../assets/Event+.png"
+import event from "../../assets/logo-escura.png"
 import Logo from "../../assets/logo.png"
 import Botao from "../../components/botao/Botao";
 import api from "../../Services/services";

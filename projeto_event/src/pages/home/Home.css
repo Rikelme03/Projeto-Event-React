@@ -194,3 +194,169 @@
   color: #2ACDCD;
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+
+  
+  .evento-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+  .evento-card {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .evento-card .evento-titulo {
+    font-size: 18px;
+  }
+
+  .evento-card .evento-descricao {
+    font-size: 14px;
+  }
+
+  
+  .contato-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .contato-container .contato-mapa {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .contato-container .contato-info {
+    text-align: center;
+    line-height: 2;
+    margin-bottom: 30px;
+  }
+
+  
+  .textoDaImagem {
+    max-width: 95%;
+    padding: 10px;
+    margin-top: 0px;
+  }
+
+  .textoDaImagem h2 {
+    font-size: 16px;
+  }
+
+  .textoDaImagem p {
+    font-size: 9px;
+    
+  }
+
+
+  .textoDaImagem hr {
+    margin: 10px auto 40px auto;
+    margin-bottom: 14px;
+  }
+
+
+  .home-visao img {
+    height: auto;
+  }
+
+
+  .home-eventos {
+    height: auto;
+    padding-bottom: 30px;
+    margin-top: 25px;
+  }
+
+  .home-contato {
+    height: auto;
+    padding-bottom: 30px;
+  }
+
+  /* Ajusta título da seção */
+  .home-eventos h2,
+  .tituloHome h2 {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .evento-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .evento-card {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .evento-card .evento-titulo {
+    font-size: 18px;
+  }
+
+  .evento-card .evento-descricao {
+    font-size: 14px;
+  }
+
+  .contato-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .contato-container .contato-mapa {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .contato-container .contato-info {
+    text-align: center;
+    line-height: 2;
+    margin-bottom: 30px;
+  }
+
+  .textoDaImagem {
+    max-width: 95%;
+    padding: 10px;
+    margin-top: 0px;
+  }
+
+  .textoDaImagem h2 {
+    font-size: 16px;
+  }
+
+  .textoDaImagem p {
+    font-size: 9px;
+  }
+
+  .textoDaImagem hr {
+    margin: 10px auto 40px auto;
+    margin-bottom: 14px;
+  }
+
+  .home-visao img {
+    height: auto;
+  }
+
+  .home-eventos {
+    height: auto;
+    padding-bottom: 30px;
+    margin-top: 25px;
+  }
+
+  .home-contato {
+    height: auto;
+    padding-bottom: 30px;
+  }
+
+  .home-eventos h2,
+  .tituloHome h2 {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+}

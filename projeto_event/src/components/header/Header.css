@@ -1,105 +1,85 @@
+.header_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  flex-wrap: wrap;
+  
+}
+
 body {
-    font-family: "Poppins", sans-serif;
-  }
-  
-  header {
-    height: 75px;
-    box-shadow: 1px 4px 4px 0px #00000030;
+    margin: 0;
+    padding: 0;
     background-color: black;
-  }
-  
+}
+
+.header_header img {
+  height: 30px;
+}
+
+.nav_header {
+  display: flex;
+  gap: 20px;
+}
+
+.link_header {
+  text-decoration: none;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  margin: 0 10px;
+}
+
+.Adm p {
+  color: #2ACDCD;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.Adm img {
+  height: 19px;
+  width: 19px;
+  cursor: pointer;
+}
+
+.menu_icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #2ACDCD;
+}
+
+
+@media screen and (max-width: 768px) {
   .header_header {
-    padding: 30px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  .link_header {
-    margin-left: 65px;
-    margin-right: 5px;
-    text-decoration: none;
-    color: white;
-    font-family: "poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .navs_header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-    .header_header img {
-    height: 30px;
-  }
-
-  .adm_info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .adm_info img {
-    height: 19px;
-    width: 19px;
-    object-fit: cover;
-  }
-
-
-
-
-  /********** botao login ************/
-
-  .botao_login button{
-    border: none;
-    background-color: #2F2E41;
-    color: white;
-    width: 120px;    
-    height: 40px;
-    cursor: pointer;
-    border-radius: 6px;
-    font-size: 16px;
-    font-family: "Poppins", sans-serif; 
-  }
-  
-  @media screen and (max-width: 768px) {
-    .login_img,
-    .nav_header {
-      display: none;
-    }
-  
-    .navas_header {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-  
-
-
-    .adm_info .link_header {
-      display: block;
-      font-size: 14px;
-      text-align: center;
-      color: #1f1848;
-      text-decoration: none;
-    }
-  
-    .header_header {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-  .link_header img{
-    height: 17px;
-  }
-
-  .Adm p{
-    color: #2ACDCD;
     
-    font-size: 17px;
   }
-  
-  
+
+  .nav_header {
+    display: none;
+    align-items: flex-start;
+    background-color: black;
+    padding: 10px 0;
+  }
+
+  .nav_header.ativo {
+    display: flex;
+  }
+
+  .menu_icon {
+    display: block;
+  }
+
+  .Adm {
+    align-self: flex-end;
+    margin-top: 10px;
+  }
+
+  .Adm p {
+    font-size: 14px;
+  }
+}

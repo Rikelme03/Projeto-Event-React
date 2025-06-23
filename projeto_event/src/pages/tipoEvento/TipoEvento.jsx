@@ -81,11 +81,6 @@ const TipoEvento = () => {
 
         try {
             const resposta = await api.get("tiposEventos");
-            // console.log(resposta.data[2].IdTipoEvento);
-            // console.log(resposta.data[3].Ti);
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
-            console.log(resposta.data);
             setListaTiposEventos(resposta.data);
 
         } catch (error) {
@@ -94,15 +89,9 @@ const TipoEvento = () => {
         }
     }
 
-    useEffect(() => {
+   useEffect(() => {
         listarTiposEventos();
-        
-    }, [listaTiposEventos]);
-
-    useEffect(() => {
-        // listarTipoEvento();
-        listarTiposEventos();
-    }, []);
+    }, [listaTiposEventos])
 
 
     async function deletarTipoEvento(id) {

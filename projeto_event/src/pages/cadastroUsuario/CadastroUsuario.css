@@ -1,24 +1,34 @@
 .tela_cadastro {
-  display: flex;
   height: 100vh;
   width: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.lado {
+/* .lado {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-.lado-esquerdo {
+/* .lado-esquerdo {
   background-color: #1B1B2F;
 }
 
 .lado-direito {
   background-color: #EDEDED;
+} */
+.cadastro_meio{
+background-image: url(../../assets/Cadastro_Usuario.png);
+width: 100%;
+height: 100%;
+background-position: center;   /* centraliza a imagem */
+background-repeat: no-repeat;  /* evita repetição da imagem */
+display: flex;
+align-items: center;
+justify-content: center;
 }
+
 
 .formulario_cadastro {
   background-color: white;
@@ -28,6 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0.9;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -45,15 +56,18 @@
   width: 100%;
   padding: 12px;
   border: none;
-  border-bottom: 2px solid #2ACDCD;
+  border-bottom: 2px solid #2F2E41;
   background-color: transparent;
   font-size: 14px;
   outline: none;
+  color: #2F2E41;
 }
 
 .links_aux {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   font-size: 12px;
   margin-bottom: 20px;
