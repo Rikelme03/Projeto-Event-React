@@ -1,6 +1,6 @@
 import './App.css';
 import CadatroEvento from "./pages/cadastroEvento/CadastrEvento"
-import Rotas from "./routes/Routes"
+import Rotas from "./Routes/Routes"
 
 function App() {
   return (
