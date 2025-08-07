@@ -94,12 +94,12 @@ const Login = () => {
                     <div className="campos_login">
 
                         <div className="campo_input">
-                            <input type="Email" name="Email" placeholder="Email"
+                            <input type="Email" name="Email" placeholder="Username"
                                 value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
                         <div className="campo_input">
-                            <input type="password" name="Senha" placeholder="Senha"
+                            <input type="senha" name="Senha" placeholder="Password"
                                 value={senha} onChange={(e) => setSenha(e.target.value)} />
                         </div>
                     </div>

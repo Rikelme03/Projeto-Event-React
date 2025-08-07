@@ -116,8 +116,6 @@
 .item_evento td {
     padding: 30px 5px 30px;
     border-bottom: #FFFFFF 1px solid;
-    align-items: center;
-    text-align: center;
  
 }
 
@@ -129,12 +127,7 @@ tbody button{
     background-color: transparent;
     border: 0px;
 }
-@media screen and (max-width: 450px) {
-  .item_evento{
-    background-image: none;
-  }
-  
-}
+
 @media screen and (max-width: 768px) {
   .tabela_evento table, 
   .tabela_evento thead, 
@@ -156,8 +149,8 @@ tbody button{
     padding: 15px;
     border-radius: 8px;
     border-left: 4px solid #2ACDCD;
-    background-image: none;
-  
+    background-image: url("../../assets/bannerTipoUsuario.png");
+         
     background-repeat: no-repeat; 
     background-position: center;  
   }
@@ -223,7 +216,7 @@ tbody button{
     padding: 15px;
     border-radius: 8px;
     border-left: 4px solid #2ACDCD;
-    background-image: none;
+    background-image: url("../../assets/bannerTipoUsuario.png");
     background-repeat: no-repeat; 
     background-position: center;  
   }

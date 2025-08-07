@@ -17,7 +17,7 @@ const CadastroEvento = () => {
     const [tipoEvento, setTipoEvento] = useState("")
     const [listaEvento, setListaEvento] = useState([])
     const [listaTipoEvento, setListaTipoEvento] = useState([])
-    const [instituicao, setInstituicao] = useState("7FE5A07D-0AF6-43EA-BB33-ED889E8223A4")
+    const [instituicao, setInstituicao] = useState("93F203D4-F2BA-4197-85A1-E79F9DE797C0")
     const currentDate = new Date();
     const formatandoData = format(currentDate, 'dd/mm/yyyy')
 

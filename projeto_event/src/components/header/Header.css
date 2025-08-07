@@ -30,7 +30,6 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   margin: 0 10px;
-  font-size: 16px;
 }
 
 .Adm p {
@@ -83,12 +82,4 @@ body {
   .Adm p {
     font-size: 14px;
   }
-}
-
-@media screen and (max-width: 450px) {
-  .header_header img {
-    height: 17px;
-  }
-
-  
 }

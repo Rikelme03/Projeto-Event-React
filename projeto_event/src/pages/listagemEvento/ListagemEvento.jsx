@@ -100,6 +100,7 @@ const ListagemEvento = () => {
     const resposta = await api.get(`ComentariosEventos/ListarSomenteExibe?id=${idEvento}`);
     const comentarios = resposta.data;
 
+    // 2. Montar lista HTML
     const listaHtml = comentarios.length > 0
       ? `<ul style="text-align: left">${comentarios.map(c => `<li>${c.descricao}</li>`).join('')}</ul>`
       : "<p>Sem comentários ainda.</p>";
@@ -141,7 +142,7 @@ const ListagemEvento = () => {
   } catch (error) {
     console.log(error);
     console.log("ID do Evento:", idEvento);
-    Swal.fire('Confirmado!', 'Seu comentário foi cadastrado..', 'success')
+    Swal.fire("Erro", "Não foi possível carregar ou enviar comentários.", "error");
   }
 }
 

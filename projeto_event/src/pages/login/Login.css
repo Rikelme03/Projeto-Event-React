@@ -52,10 +52,8 @@ body, html, #root {
 }
 
 .form_cadastro img {
-    height: 50px;
-    width: px;
-    margin-bottom: 80px;
-    margin-top: 40px;
+    width: 150px;
+    margin-bottom: 40px;
 }
 
 .campos_login {
